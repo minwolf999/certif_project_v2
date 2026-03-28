@@ -1,0 +1,21 @@
+http://localhost:8080 {
+  handle /quizz* {
+    reverse_proxy quizz:3000
+  }
+
+  handle /forum* {
+    reverse_proxy forum:3000
+  }
+
+  handle /admin* {
+    reverse_proxy admin:3000
+  }
+
+  handle /* {
+    reverse_proxy log:3000
+  }
+
+  handle {
+    respond "Not Found" 404
+  }
+}
