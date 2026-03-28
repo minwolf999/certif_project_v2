@@ -8,7 +8,7 @@
 #  consumed_timestep      :integer
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  otp_required_for_login :boolean
+#  otp_required_for_login :boolean          default(FALSE), not null
 #  otp_secret             :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime

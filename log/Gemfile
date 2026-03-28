@@ -3,22 +3,21 @@
 source 'https://rubygems.org'
 
 gem 'bootsnap', require: false
+gem 'cancancan'
+gem 'devise'
+gem 'devise-jwt'
+gem 'devise-two-factor'
+gem 'dotenv-rails'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'pg'
 gem 'puma'
 gem 'rails'
+gem 'slim-rails'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
-
-
-gem 'cancancan'
-gem 'devise'
-gem 'devise-jwt'
-gem 'devise-two-factor'
-gem 'slim-rails'
 gem 'view_component'
 
 group :development, :test do
