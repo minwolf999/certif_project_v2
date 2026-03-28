@@ -1,8 +1,55 @@
-# Omakase Ruby styling for Rails
-inherit_gem: { rubocop-rails-omakase: rubocop.yml }
-
-# Overwrite or add rules to create your own house style
-#
-# # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
-# Layout/SpaceInsideArrayLiteralBrackets:
-#   Enabled: false
+---
+# List of all cops and their description/default values is available here:
+#   https://github.com/bbatsov/rubocop/blob/master/manual/cops.md
+AllCops:
+  Exclude:
+    - vendor/**/*
+    - vendor/bundle/**/*
+    - spec/fixtures/**/*
+    - tmp/**/*
+    - db/**/*
+    - app/views/**/*
+    - ~/.rbenv/**/*
+  NewCops: enable
+  TargetRubyVersion: 3.2.2
+Bundler/OrderedGems:
+  Enabled: true
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+Layout/LineLength:
+  Max: 140
+Lint/MissingSuper:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+Metrics/ClassLength:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/ModuleLength:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+Rails/HelperInstanceVariable:
+  Enabled: false
+Rails/SaveBang:
+  Enabled: false
+Rails/SkipsModelValidations:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/HashAsLastArrayItem:
+  Enabled: false
+Style/HashLikeCase:
+  Enabled: false
+Style/SafeNavigationChainLength:
+  Enabled: false
+Style/SymbolArray:
+  Enabled: false
+require:
+  - rubocop-performance
+  - rubocop-rails
