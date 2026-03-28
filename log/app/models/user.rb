@@ -22,7 +22,6 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
-  devise :two_factor_authenticatable
-  devise :registerable, :recoverable, :rememberable, :validatable,
+  devise :database_authenticatable, :two_factor_authenticatable, :registerable, :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: NullJwtStrategy
 end

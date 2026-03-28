@@ -33,9 +33,6 @@
 /app/assets/builds/*
 !/app/assets/builds/.keep
 
-# Ignore database.yml
-/config/database.yml
-
 # .DS_Store
 .DS_Store
 
