@@ -16,6 +16,7 @@ class NullJwtStrategy
     def jwt_revoked?(payload, user)
       jti = payload && payload["jti"]
       return false unless jti
+
       now = Time.now.to_i
       mutex.synchronize do
         revoked_jtis.delete_if { |_, exp| exp && exp < now }
@@ -26,7 +27,10 @@ class NullJwtStrategy
     def revoke_jwt(payload, user)
       jti = payload && payload["jti"]
       return unless jti
-      exp = payload["exp"]
+
+      exp = payload && payload["exp"]
+      return unless exp
+
       mutex.synchronize do
         revoked_jtis[jti] = exp
       end

@@ -9,7 +9,6 @@ AllCops:
     - tmp/**/*
     - db/**/*
     - app/views/**/*
-    - ~/.rbenv/**/*
   NewCops: enable
   TargetRubyVersion: 3.2.2
 Bundler/OrderedGems:
