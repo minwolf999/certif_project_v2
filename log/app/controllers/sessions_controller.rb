@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SessionController < ApplicationController
+class SessionsController < ApplicationController
   def redirect_to_sign_in
     redirect_to new_user_session_path
   end
