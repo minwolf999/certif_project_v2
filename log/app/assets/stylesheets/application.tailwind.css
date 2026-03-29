@@ -18,7 +18,7 @@
 @layer components {
   body {
     @apply text-333333;
-    @apply font-sans
+    @apply font-sans;
   }
   h1 {
     @apply text-4xl font-semibold;

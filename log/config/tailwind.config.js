@@ -75,7 +75,7 @@ module.exports = {
       },
     },
   },
-  safelist: [ // safelist classes will alwayys be loaded by tailwind whether or not they are used
+  safelist: [
     'w-1/13',
     'w-2/13',
     'w-3/13',

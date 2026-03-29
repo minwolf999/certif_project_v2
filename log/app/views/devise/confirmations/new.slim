@@ -3,7 +3,7 @@
     = t('.title')
 
   .m-auto.bg-white.border-2.rounded-lg.px-4.pb-2 class="lg:w-2/5 w-4/5 border-[#E0E0E0] shadow-[4px_4px_4px_0_rgba(0,0,0,0.25)]"
-    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data_turbo: false) do |f|
+    = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), data: { turbo: false }) do |f|
       = f.input :email, autofocus: true, autocomplete: 'email', input_html: { value: @email }, required: true
 
       .mt-5

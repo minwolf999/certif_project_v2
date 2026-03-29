@@ -40,7 +40,7 @@ module Notification
       when 'warning'
         'text-yellow-800'
       else
-        'text-white'
+        'text-gray-900'
       end
     end
   end

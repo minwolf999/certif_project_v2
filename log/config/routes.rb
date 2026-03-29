@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   end
 
   # Defines the root path route ("/")
-  root "sessions#home"
+  # root "sessions#home"
 end

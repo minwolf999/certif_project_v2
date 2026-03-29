@@ -57,7 +57,7 @@ SimpleForm.setup do |config|
     b.use :html5
     b.optional :readonly
     b.wrapper tag: 'div', class: 'flex items-center h-5' do |ba|
-      ba.use :input, class: 'focus:ring-2 focus:ring-g949494:focus ring-offset-2 h-4 w-4 text-g434343 border-gray-300 rounded'
+      ba.use :input, class: 'focus:ring-2 focus:ring-g949494 focus:ring-offset-2 h-4 w-4 text-g434343 border-gray-300 rounded'
     end
     b.wrapper tag: 'div', class: 'ml-3 text-sm' do |bb|
       bb.use :label, class: 'block', error_class: 'text-red-500 error'
@@ -93,7 +93,7 @@ SimpleForm.setup do |config|
   end
 
   # vertical multi select
-  config.wrappers :vertical_multi_select, tag: 'div', class: 'my-4', error_class: 'f', valid_class: '' do |b|
+  config.wrappers :vertical_multi_select, tag: 'div', class: 'my-4', error_class: 'text-red-500 error', valid_class: '' do |b|
     b.use :html5
     b.optional :readonly
     b.wrapper :legend_tag, tag: 'legend', class: 'text-sm font-medium text-gray-600', error_class: 'text-red-500 error' do |ba|

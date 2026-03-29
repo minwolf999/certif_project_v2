@@ -19,6 +19,12 @@ class SessionsController < ApplicationController
     flash.now[:notice] = I18n.t('devise.sessions.otp_sent')
     @display_otp = true
     @password = otp_params[:password]
-    render :new
+    render 'devise/sessions/new'
+  end
+
+  private
+
+  def otp_params
+    params.require(:user).permit(:email, :password, :remember_me)
   end
 end

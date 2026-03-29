@@ -3,6 +3,8 @@
 fr:
   devise:
     confirmations:
+      new:
+        title: "Renvoyer le mail de confirmation"
       confirmed: "Votre adresse mail a bien été confirmer."
       send_instructions: "Vous allez recevoir un mail avec les instructions pour confirmer votre adresse mail dans quelques minutes."
       send_paranoid_instructions: "Si votre addresse mail est déjà présente dans notre base de donnée,  vous allez recevoir un email avec les instructions pour confirmer votre adresse mail dans quelques minutes."
@@ -36,9 +38,6 @@ fr:
       send_paranoid_instructions: "Si votre adresse mail existe dans notre base de données, vous allez recevoir un lien pour récupérer votre mot de passe dans quelques minutes."
       updated: "Votre mot de passe à bien été modifier. Vous êtes maintenant connecter."
       updated_not_active: "Votre mot de passe à bien été modifier."
-    confirmations:
-      new:
-        title: "Renvoyer le mail de confirmation"
     registrations:
       new:
         title: "S'inscrire"
@@ -51,6 +50,7 @@ fr:
       updated: "Votre compte a été modifier avec succès."
       updated_but_not_signed_in: "Votre compte a été modifier avec succès, mais comme votre mot de passe a été modifier vous devez vous reconnecter."
     sessions:
+      otp_sent: "Mot de passe à usage unique déjà envoyé."
       signed_in: "Connecter avec succès."
       signed_out: "Enregistrer avec succès."
       already_signed_out: "Déconnecter avec succès."
