@@ -25,7 +25,6 @@ gem 'view_component'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
-  gem 'rubocop-rails-omakase', require: false
   gem 'letter_opener'
 end
 
@@ -34,9 +33,17 @@ group :development do
   gem 'slim_lint'
   gem 'web-console'
   gem 'hotwire-spark'
+  gem 'rubocop'
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
 end
 
 group :test do
   gem 'capybara'
+  gem 'database_cleaner-active_record'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
+  gem 'simplecov', require: false
 end

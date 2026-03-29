@@ -1,0 +1,108 @@
+name: Tests
+
+on:
+  workflow_dispatch: 
+  pull_request:
+    branches:
+      - main
+      - develop
+    types:
+      - ready_for_review
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgis/postgis:16-3.4-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: sysfarm-webapp_test
+        options: >-
+          --health-cmd="pg_isready -U postgres" --health-interval=10s --health-timeout=5s --health-retries=5
+
+    env:
+      RAILS_ENV: test
+      SECRET_KEY_BASE: test
+      PGHOST: postgres
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      BUNDLE_WITHOUT: development
+      DATABASE_URL: postgis://postgres:postgres@postgres:5432/sysfarm-webapp_test
+      FLASK_API_URL: http://127.0.0.1
+      FLASK_API_PORT: "5000"
+      FLASK_TOKEN: test-token
+      CI: "true"
+      HEADLESS: "1"
+      ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY: test-primary-key-00000000000000000000000000000000
+      ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY: test-deterministic-key-000000000000000000000000
+      ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT: test-salt-000000000000000000000000000000
+      AWS_REGION: eu-west-3
+      AWS_ACCESS_KEY_ID: dummy
+      AWS_SECRET_ACCESS_KEY: dummy
+      AWS_BUCKET: dummy-bucket
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable -y
+          
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
+            libpq-dev postgresql-client imagemagick libmagickwand-dev \
+            libmagickcore-dev libcairo2-dev librsvg2-dev libxrender-dev \
+            libicu-dev wget unzip build-essential gdal-bin libgdal-dev libgeos-dev
+
+      - name: Set up GeckoDriver
+        uses: browser-actions/setup-geckodriver@latest
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@3ff19f5e2baf30647122352b96108b1fbe250c64 # v1.299.0
+        with:
+          ruby-version: '3.2.2'
+          bundler-cache: true
+
+      - name: Build assets (tailwind / sprockets)
+        run: |
+          bundle exec rails assets:precompile
+
+      - name: Wait for Postgres
+        run: |
+          POSTGRES_ID=$(docker ps --filter "ancestor=postgis/postgis:16-3.4-alpine" --format "{{.ID}}")
+          if [ -n "$POSTGRES_ID" ]; then
+            PGHOST=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $POSTGRES_ID)
+          else
+            echo "Postgres container not found in act, using hostname 'postgres'"
+            exit 1
+          fi
+          echo "PGHOST=$PGHOST" >> $GITHUB_ENV
+          echo "DATABASE_URL=postgis://postgres:postgres@$PGHOST:5432/sysfarm-webapp_test" >> $GITHUB_ENV
+          for i in {1..60}; do
+            if pg_isready -h "$PGHOST" -p 5432 -U postgres; then
+              exit 0
+            fi
+            sleep 1
+          done
+          exit 1
+
+      - name: Create test database
+        env:
+          PGPASSWORD: postgres
+        run: |
+          bundle exec rails db:create
+
+      - name: Prepare database
+        run: |
+          bundle exec rails db:prepare
+
+      - name: Run tests
+        run: |
+          bundle exec rspec
