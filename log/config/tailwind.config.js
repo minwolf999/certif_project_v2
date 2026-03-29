@@ -1,5 +1,3 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
-
 module.exports = {
   content: [
     "./public/*.html",
@@ -20,22 +18,30 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["Montserrat", "Inter var", ...defaultTheme.fontFamily.sans],
+        sans: ["Nunito", "ui-sans-serif", "system-ui", "sans-serif"],
+        serif: ["Playfair Display", "serif"],
       },
       colors: {
-        gf3f3f3: '#f3f3f3',
-        g949494: '#949494',
-        g434343: '#434343',
-        of3d1b3: '#f3d1b3',
-        offddbf: '#ffddbf',
-        o947254: '#947254',
-        vbad681: '#bad681',
-        vc6e28d: '#c6e28d',
-        dark: '#434343',
-        'dark-grey': '#949494',
-        'medium-grey': '#929292',
-        'light-grey': '#F3F3F3',
-        grey: '#D9D9D9',
+        // Text
+        '333333': '#333333', // principal
+        '7d7d7d': '#7d7d7d', // secondary
+        f5f5f5: '#f5f5f5', // light
+
+        
+        // Border
+        e0e0e0: '#e0e0e0',
+        
+        
+        // Background
+        fdfdfd: '#fdfdfd',
+
+        // Background color
+        primary: '#b8a9c9',
+        primary_dark: '#a69bc4',
+        primary_light: '#d6c7e7',
+        secondary: '#88c0d0',
+        secondary_dark: '#76b2cb',
+        secondary_light: '#a6deee',
       },
       fontSize: {
         '2xs': ['0.625rem', { lineHeight: '0.75rem' }]
@@ -102,10 +108,5 @@ module.exports = {
     'w-4/5',
     'w-5/5',
   ],
-  plugins: [
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/aspect-ratio"),
-    require("@tailwindcss/typography"),
-    require("@tailwindcss/container-queries"),
-  ],
+  plugins: [],
 };
