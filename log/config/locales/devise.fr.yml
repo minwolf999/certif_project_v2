@@ -36,7 +36,12 @@ fr:
       send_paranoid_instructions: "Si votre adresse mail existe dans notre base de données, vous allez recevoir un lien pour récupérer votre mot de passe dans quelques minutes."
       updated: "Votre mot de passe à bien été modifier. Vous êtes maintenant connecter."
       updated_not_active: "Votre mot de passe à bien été modifier."
+    confirmations:
+      new:
+        title: "Renvoyer le mail de confirmation"
     registrations:
+      new:
+        title: "S'inscrire"
       destroyed: "Vous avez été déconnecter!"
       signed_up: "Vous êtes maintenant connecter."
       signed_up_but_inactive: "Vous vous êtes enregistrer avec succès mais nous ne pouvons vous connecter car votre compte n'a pas encore été activer."
@@ -58,6 +63,11 @@ fr:
       hello: "Bonjour"
       sign_in: "Se connecter"
       sign_up: "Créer un compte"
+      send_confirm: 'Envoyer la confirmation'
+    shared:
+      links:
+        didnt_receive_confirmation_instructions?: "Vous n'avez pas reçu de courriel de confirmation ?"
+        didnt_receive_unlock_instructions?: "Vous n'avez pas reçu de courriel de déverrouillage de votre compte ?"
   errors:
     messages:
       already_confirmed: "A déjà été confirmer. Veuillez vous connecter"
