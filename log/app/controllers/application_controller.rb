@@ -5,8 +5,10 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  protected
+  after_action :raise_on_empty_response
 
+  protected
+  
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) do |u|
       u.permit(:first_name, :last_name, :honorific, :email, :password, :password_confirmation)
@@ -21,5 +23,13 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     redirect_to new_user_session_path unless user_signed_in? || devise_controller?
+  end
+  
+  def raise_on_empty_response
+    return unless Rails.env.development?
+  
+    if response.status == 204
+      raise "No template rendered for #{controller_name}##{action_name}"
+    end
   end
 end
