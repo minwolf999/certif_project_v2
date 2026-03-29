@@ -53,6 +53,11 @@ fr:
       send_instructions: "Vous allez recevoir un mail contenant les instructions pour débloquer votre compte dans quelques minutes."
       send_paranoid_instructions: "Si votre compte existe, vous allez recevoir un mail contenant ;es instructions pour débloquer votre compte dans quelques minutes."
       unlocked: "Votre compte a bien été débloquer. Veuillez vous connecter."
+    common:
+      forgot_your_password?: "Mot de passe oublié ?"
+      hello: "Bonjour"
+      sign_in: "Se connecter"
+      sign_up: "Créer un compte"
   errors:
     messages:
       already_confirmed: "A déjà été confirmer. Veuillez vous connecter"
