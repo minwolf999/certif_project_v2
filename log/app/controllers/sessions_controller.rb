@@ -21,4 +21,6 @@ class SessionsController < ApplicationController
     @password = otp_params[:password]
     render :new
   end
+
+  def home; end
 end
