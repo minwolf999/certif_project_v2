@@ -3,7 +3,7 @@
 require 'capybara/rspec'
 
 # TO DEBUG WITH FIREFOX OPEN : SET THIS TO FALSE
-HEADLESS = false
+HEADLESS = true
 
 Capybara.register_server :puma_in_test do |app, port, host|
   require 'rack/handler/puma'
@@ -44,26 +44,3 @@ Capybara.default_driver = :firefox
 Capybara.javascript_driver = :firefox
 Capybara.current_driver = :firefox
 Capybara.default_max_wait_time = 5
-
-def wait_for_turbo(timeout: 30)
-  start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-
-  loop do
-    no_streams = begin
-      page.evaluate_script("document.querySelectorAll('turbo-stream').length === 0")
-    rescue StandardError
-      true
-    end
-    no_busy_frames = begin
-      page.evaluate_script("Array.from(document.querySelectorAll('turbo-frame')).every(f => !f.hasAttribute('busy'))")
-    rescue StandardError
-      true
-    end
-
-    break if no_streams && no_busy_frames
-
-    if (Process.clock_gettime(Process::CLOCK_MONOTONIC) - start_time) > timeout
-      raise Capybara::ExpectationNotMet, 'Turbo ne s\'est pas stabilisé à temps'
-    end
-  end
-end

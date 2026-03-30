@@ -41,7 +41,7 @@ RSpec.feature 'SignUps', type: :feature do
     fill_in 'user_email', with: user.email
     click_button 'Sign up'
 
-    expect(page).to have_current_path('/users/sign_up')
+    expect(page).to have_current_path(new_user_registration_path, ignore_query: true)
   end
 
   scenario 'signs up with password confirmation error' do

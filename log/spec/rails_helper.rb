@@ -50,19 +50,19 @@ end
 RSpec.configure do |config|
   config.fixture_paths = [ Rails.root.join('spec/fixtures') ]
 
-  config.use_transactional_fixtures = true  
   DatabaseCleaner.allow_remote_database_url = true
 
   config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation, { except: %w[spatial_ref_sys] })
+    DatabaseCleaner.clean_with(:truncation)
   end
 
   config.before(:each) do
+    ActionMailer::Base.deliveries.clear
     DatabaseCleaner.strategy = :transaction
   end
 
   config.before(:each, type: :feature) do
-    DatabaseCleaner.strategy = [:truncation, { except: %w[spatial_ref_sys] }]
+    DatabaseCleaner.strategy = [:truncation]
     Rails.root.glob('spec/download/*') do |file|
       next if file == Rails.root.join('spec/download/.keep').to_s
 
