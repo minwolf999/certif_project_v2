@@ -1,0 +1,20 @@
+.flex.items-center.justify-center.w-full.flex-col
+  = render Common::Title.new do
+    = t('.title')
+
+  .m-auto.bg-white.border-2.rounded-lg.px-4.pb-2 class="lg:w-2/5 w-4/5 border-[#E0E0E0] shadow-[4px_4px_4px_0_rgba(0,0,0,0.25)]"
+    = simple_form_for(resource, as: resource_name, url: (@display_otp ? session_path(resource_name) : send_otp_path), method: :post, data: { turbo: false }) do |f|
+      - if @display_otp
+        = f.input :email, as: :hidden
+        = f.input :password, as: :hidden, input_html: { value: @password }
+        label.block.text-sm.text-gray-700.font-medium = I18n.t('devise.sessions.otp_sent')
+        = f.input :otp_attempt, autofocus: true
+      - else
+        = f.input :email, autofocus: true, autocomplete: 'email', input_html: { value: @email }, required: true
+        = f.input :password, autocomplete: 'new-password', required: true
+
+      .mt-5
+        = f.submit I18n.t('devise.common.sign_in'), class: 'w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm font-bold text-f5f5f5 bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light cursor-pointer'
+
+    .mt-5.flex.gap-2.justify-center
+      = render "devise/shared/links"
