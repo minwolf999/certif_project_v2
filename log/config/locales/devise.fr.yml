@@ -50,6 +50,8 @@ fr:
       updated: "Votre compte a été modifier avec succès."
       updated_but_not_signed_in: "Votre compte a été modifier avec succès, mais comme votre mot de passe a été modifier vous devez vous reconnecter."
     sessions:
+      new:
+        title: "Se Connecter"
       otp_sent: "Mot de passe à usage unique déjà envoyé."
       signed_in: "Connecter avec succès."
       signed_out: "Enregistrer avec succès."
