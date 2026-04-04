@@ -31,6 +31,7 @@ fr:
         subject: "Mot de passe changer"
     omniauth_callbacks:
       failure: "Nous n'avons pas réussi à vous identifier car \"%{reason}\"."
+      email_not_verified: "Votre email n'a pas été vérifier sur votre compte %{kind}."
       success: "Vous êtes maintenant connecter au compte."
     passwords:
       no_token: "Vous ne pouvez accéder à cette page sans passer par le lien contenu dans le mail de réinitialisation du mot de passe. Si vous venez de ce mail, veuillez vérifier que l'URL ne contient aucune erreur."

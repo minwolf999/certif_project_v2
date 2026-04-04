@@ -29,16 +29,24 @@
 #
 class User < ApplicationRecord
   devise :database_authenticatable, :two_factor_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable,
-         :jwt_authenticatable, :omniauthable, jwt_revocation_strategy: NullJwtStrategy, omniauth_providers: [:google_oauth2]
+         :jwt_authenticatable, :omniauthable, jwt_revocation_strategy: NullJwtStrategy, omniauth_providers: [:google_oauth2, :discord]
 
   def otp_recently_sent?
     otp_sent_at.present? && otp_sent_at > 2.minutes.ago
   end
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, email: auth.info.email).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
-    end
+    return if auth.info.email.nil?
+
+    user = find_or_initialize_by(email: auth.info.email)
+
+    user.provider = auth.provider
+    user.email = auth.info.email
+    user.password ||= Devise.friendly_token[0, 20]
+
+    user.skip_confirmation!
+
+    user.save!
+    user
   end
 end

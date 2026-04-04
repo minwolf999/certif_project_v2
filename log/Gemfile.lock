@@ -267,6 +267,8 @@ GEM
       logger
       rack (>= 2.2.3)
       rack-protection
+    omniauth-discord (1.2.0)
+      omniauth-oauth2 (~> 1.6)
     omniauth-google-oauth2 (1.2.2)
       jwt (>= 2.9.2)
       oauth2 (~> 2.0)
@@ -527,6 +529,7 @@ DEPENDENCIES
   letter_opener
   mailjet
   omniauth
+  omniauth-discord
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
   pg
