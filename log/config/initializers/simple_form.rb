@@ -3,7 +3,7 @@
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
   # Default class for buttons
-  config.button_class = 'cursor-pointer inline-flex items-center rounded-md text-sm font-semibold shadow-sm px-3 py-2 bg-g434343 text-white hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-g434343'
+  config.button_class = 'cursor-pointer inline-flex items-center rounded-md text-sm font-semibold shadow-sm px-3 py-2 text-white hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
 
   # Define the default class of the input wrapper of the boolean input.
   config.boolean_label_class = ''
@@ -32,7 +32,7 @@ SimpleForm.setup do |config|
   # add validation classes to `input_field`
   config.input_field_error_class = 'border-red-500'
   # config.input_field_valid_class = 'border-green-400'
-  config.label_class = 'text-sm font-medium text-g949494'
+  config.label_class = 'text-sm font-medium'
 
 
   # vertical forms
@@ -47,7 +47,7 @@ SimpleForm.setup do |config|
     b.optional :min_max
     b.optional :readonly
     b.use :label, class: 'block', error_class: 'text-red-500 error'
-    b.use :input, class: 'text-g434343 placeholder:text-gray-300 focus:ring-g949494 focus:border-g949494 block w-full shadow-sm sm:text-xs 2xl:text-sm border-g949494 rounded-md transition-colors duration-200 ease-in-out disabled:opacity-70 disabled:bg-gray-300 h-10', error_class: 'border-red-500'#, valid_class: 'border-green-400'
+    b.use :input, class: 'placeholder:text-gray-300 block w-full shadow-sm sm:text-xs 2xl:text-sm rounded-md transition-colors duration-200 ease-in-out disabled:opacity-70 disabled:bg-gray-300 h-10', error_class: 'border-red-500'#, valid_class: 'border-green-400'
     b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-red-500 error text-xs 2xl:text-sm italic' }
     b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-grey-700 text-xs 2xl:text-sm italic' }
   end
@@ -57,7 +57,7 @@ SimpleForm.setup do |config|
     b.use :html5
     b.optional :readonly
     b.wrapper tag: 'div', class: 'flex items-center h-5' do |ba|
-      ba.use :input, class: 'focus:ring-2 focus:ring-g949494 focus:ring-offset-2 h-4 w-4 text-g434343 border-gray-300 rounded'
+      ba.use :input, class: 'focus:ring-2 focus:ring-offset-2 h-4 w-4 border-gray-300 rounded'
     end
     b.wrapper tag: 'div', class: 'ml-3 text-sm' do |bb|
       bb.use :label, class: 'block', error_class: 'text-red-500 error'
@@ -74,7 +74,7 @@ SimpleForm.setup do |config|
     b.wrapper :legend_tag, tag: 'legend', class: 'text-sm font-medium text-gray-600', error_class: 'text-red-500 error' do |ba|
       ba.use :label_text
     end
-    b.use :input, class: 'focus:ring-2 focus:ring-g949494 ring-offset-2 h-4 w-4 text-g434343 border-gray-300 rounded', error_class: 'text-red-500 error'#, valid_class: 'text-green-400'
+    b.use :input, class: 'focus:ring-2 ring-offset-2 h-4 w-4 border-gray-300 rounded', error_class: 'text-red-500 error'#, valid_class: 'text-green-400'
     b.use :full_error, wrap_with: { tag: 'p', class: 'block mt-2 text-red-500 error text-xs 2xl:text-sm italic' }
     b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-grey-700 text-xs 2xl:text-sm italic' }
   end
@@ -101,7 +101,7 @@ SimpleForm.setup do |config|
     end
     b.wrapper tag: 'div', class: 'block w-full inline-flex space-x-1' do |ba|
       # ba.use :input, class: 'flex w-auto w-auto text-gray-500 text-sm border-gray-300 rounded p-2', error_class: 'text-red-500 error', valid_class: 'text-green-400'
-      ba.use :input, class: 'focus:ring-g949494 focus:border-g949494 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md transition-colors duration-200 ease-in-out'
+      ba.use :input, class: 'block w-full shadow-sm sm:text-sm border-gray-300 rounded-md transition-colors duration-200 ease-in-out'
     end
     b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-red-500 error text-xs 2xl:text-sm italic' }
     b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-grey-700 text-xs 2xl:text-sm italic' }
