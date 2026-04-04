@@ -1,23 +1,27 @@
 - if controller_name != 'sessions'
   .rounded-xl.bg-secondary_dark.text-f5f5f5.font-bold.px-2.w-fit class='hover:bg-secondary'
     = link_to I18n.t('devise.common.sign_in'), new_session_path(resource_name), class: 'text-sm font-medium text-gray-700'
-  br/
+
 - if devise_mapping.registerable? && controller_name != 'registrations'
   .rounded-xl.bg-secondary_dark.text-f5f5f5.font-bold.px-2.w-fit class='hover:bg-secondary'
     = link_to I18n.t('devise.common.sign_up'), new_registration_path(resource_name), class: 'text-sm font-medium text-gray-700'
-  br/
+
 - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
   .rounded-xl.bg-secondary_dark.text-f5f5f5.font-bold.px-2.w-fit class='hover:bg-secondary'
     = link_to I18n.t('devise.common.forgot_your_password?'), new_password_path(resource_name), class: 'text-sm font-medium text-gray-700'
-  br/
+
 - if devise_mapping.confirmable? && controller_name != 'confirmations'
   .rounded-xl.bg-secondary_dark.text-f5f5f5.font-bold.px-2.w-fit class='hover:bg-secondary'
     = link_to I18n.t('devise.shared.links.didnt_receive_confirmation_instructions?'), new_confirmation_path(resource_name), class: 'text-sm font-medium text-gray-700'
-  br/
+
 / - if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
 /   = link_to I18n.t('devise.shared.links.didnt_receive_unlock_instructions?'), new_unlock_path(resource_name), class: 'text-sm font-medium text-gray-700'
-/   br/
-/ - if devise_mapping.omniauthable?
-/   - resource_class.omniauth_providers.each do |provider|
-/     = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: 'text-sm font-medium text-gray-700'
-/     br/
+/
+- if devise_mapping.omniauthable?
+  - resource_class.omniauth_providers.each do |provider|
+    = button_to omniauth_authorize_path(resource_name, provider),
+            method: :post,
+            data: { turbo: false },
+            class: "rounded-xl bg-secondary_dark p-2 w-fit hover:bg-secondary text-sm font-medium text-gray-700",
+            title: t('.omniauth_title', provider: OmniAuth::Utils.camelize(provider))
+      = svg_tag provider.downcase, options: { class: "w-4 h-4" }

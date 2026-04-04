@@ -70,6 +70,7 @@ en:
       links:
         didnt_receive_confirmation_instructions?: "You haven't received a confirmation email?"
         didnt_receive_unlock_instructions?: "Have you not received an email to unlock your account?"
+        omniauth_title: "Sign in with %{provider}"
   errors:
     messages:
       already_confirmed: "was already confirmed, please try signing in"

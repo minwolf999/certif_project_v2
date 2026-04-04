@@ -70,6 +70,7 @@ fr:
       links:
         didnt_receive_confirmation_instructions?: "Vous n'avez pas reçu de courriel de confirmation ?"
         didnt_receive_unlock_instructions?: "Vous n'avez pas reçu de courriel de déverrouillage de votre compte ?"
+        omniauth_title: "Se connecter avec %{provider}"
   errors:
     messages:
       already_confirmed: "A déjà été confirmer. Veuillez vous connecter"
