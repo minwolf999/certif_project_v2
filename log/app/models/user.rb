@@ -29,4 +29,8 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :two_factor_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable,
          :jwt_authenticatable, jwt_revocation_strategy: NullJwtStrategy
+
+  def otp_recently_sent?
+    otp_sent_at.present? && otp_sent_at > 2.minutes.ago
+  end
 end
