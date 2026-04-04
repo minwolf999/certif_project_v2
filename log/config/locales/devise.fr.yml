@@ -1,0 +1,80 @@
+# Additional translations at https://github.com/heartcombo/devise/wiki/I18n
+
+fr:
+  devise:
+    confirmations:
+      new:
+        title: "Renvoyer le mail de confirmation"
+      confirmed: "Votre adresse mail a bien été confirmer."
+      send_instructions: "Vous allez recevoir un mail avec les instructions pour confirmer votre adresse mail dans quelques minutes."
+      send_paranoid_instructions: "Si votre addresse mail est déjà présente dans notre base de donnée,  vous allez recevoir un email avec les instructions pour confirmer votre adresse mail dans quelques minutes."
+    failure:
+      already_authenticated: "Vous êtes déjà connecté."
+      inactive: "Votre compte n'a pas encore été activé."
+      invalid: "Invalide %{authentication_keys} ou mot de passe."
+      locked: "Votre compte a été bloqué."
+      last_attempt: "Il ne vous reste plus qu'un essai avant que votre compte ne soit bloqué."
+      not_found_in_database: "Invalide %{authentication_keys} ou mot de passe."
+      timeout: "Votre session à expirée. Veuillez-vous reconnecter."
+      unauthenticated: "Vous devez vous connecter pour acceder à cette page."
+      unconfirmed: "Vous devez confirmer votre adresse mail."
+    mailer:
+      confirmation_instructions:
+        subject: "Instructions de confirmations"
+      reset_password_instructions:
+        subject: "Instructions de Réinitialisation du mot de passe"
+      unlock_instructions:
+        subject: "Instructions de débloquage"
+      email_changed:
+        subject: "Adresse mail modifier"
+      password_change:
+        subject: "Mot de passe changer"
+    omniauth_callbacks:
+      failure: "Nous n'avons pas réussi à vous identifier car \"%{reason}\"."
+      success: "Vous êtes maintenant connecter au compte."
+    passwords:
+      no_token: "Vous ne pouvez accéder à cette page sans passer par le lien contenu dans le mail de réinitialisation du mot de passe. Si vous venez de ce mail, veuillez vérifier que l'URL ne contient aucune erreur."
+      send_instructions: "Vous allez recevoir un mail contenant les instructions pour réinitialiser votre mot de passe dans quelques minutes."
+      send_paranoid_instructions: "Si votre adresse mail existe dans notre base de données, vous allez recevoir un lien pour récupérer votre mot de passe dans quelques minutes."
+      updated: "Votre mot de passe à bien été modifier. Vous êtes maintenant connecter."
+      updated_not_active: "Votre mot de passe à bien été modifier."
+    registrations:
+      new:
+        title: "S'inscrire"
+      destroyed: "Vous avez été déconnecter!"
+      signed_up: "Vous êtes maintenant connecter."
+      signed_up_but_inactive: "Vous vous êtes enregistrer avec succès mais nous ne pouvons vous connecter car votre compte n'a pas encore été activer."
+      signed_up_but_locked: "Vous vous êtes enregistrer avec succès mais nous ne pouvons vous connecter car votre compte a été bloquer."
+      signed_up_but_unconfirmed: "Un mail avec un lien de confirmation a été envoyé à votre adresse mail. Veuillez suivre le lien pour activer votre compte."
+      update_needs_confirmation: "Votre compte a été modifier avec succès. Cependant nous devons vérifier votre nouvelle adresse mail. Veuillez vérifier vos mails et suivre le lien de confirmation pour confirmer votre nouvelle adresse."
+      updated: "Votre compte a été modifier avec succès."
+      updated_but_not_signed_in: "Votre compte a été modifier avec succès, mais comme votre mot de passe a été modifier vous devez vous reconnecter."
+    sessions:
+      otp_sent: "Mot de passe à usage unique déjà envoyé."
+      signed_in: "Connecter avec succès."
+      signed_out: "Enregistrer avec succès."
+      already_signed_out: "Déconnecter avec succès."
+    unlocks:
+      send_instructions: "Vous allez recevoir un mail contenant les instructions pour débloquer votre compte dans quelques minutes."
+      send_paranoid_instructions: "Si votre compte existe, vous allez recevoir un mail contenant ;es instructions pour débloquer votre compte dans quelques minutes."
+      unlocked: "Votre compte a bien été débloquer. Veuillez vous connecter."
+    common:
+      forgot_your_password?: "Mot de passe oublié ?"
+      hello: "Bonjour"
+      sign_in: "Se connecter"
+      sign_up: "Créer un compte"
+      send_confirm: 'Envoyer la confirmation'
+    shared:
+      links:
+        didnt_receive_confirmation_instructions?: "Vous n'avez pas reçu de courriel de confirmation ?"
+        didnt_receive_unlock_instructions?: "Vous n'avez pas reçu de courriel de déverrouillage de votre compte ?"
+  errors:
+    messages:
+      already_confirmed: "A déjà été confirmer. Veuillez vous connecter"
+      confirmation_period_expired: "La confirmation doit être effectuée dans un délai de %{period}. Veuillez en demander une nouvelle."
+      expired: "a expiré, veuillez en demander un nouveau"
+      not_found: "introuvable"
+      not_locked: "n'était pas bloquer"
+      not_saved:
+        one: "Une erreur a empêché l'enregistrement de cette ressource %{resource}:"
+        other: "%{count} erreurs ont empêché l'enregistrement de cette %{resource}:"
