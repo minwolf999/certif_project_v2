@@ -10,6 +10,10 @@ module Users
       handle_omniauth(kind: 'Discord')
     end
 
+    def github
+      handle_omniauth(kind: 'Github')
+    end
+
     private
 
     def handle_omniauth(kind:)

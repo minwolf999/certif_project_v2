@@ -33,9 +33,11 @@ Devise.setup do |config|
   if Rails.env.production?
     config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID_PROD'], ENV['GOOGLE_CLIENT_SECRET_PROD']
     config.omniauth :discord, ENV['DISCORD_CLIENT_ID_PROD'], ENV['DISCORD_CLIENT_SECRET_PROD']
+    config.omniauth :github, ENV['GITHUB_CLIENT_ID_PROD'], ENV['GITHUB_CLIENT_SECRET_PROD']
   else
     config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID_DEV'], ENV['GOOGLE_CLIENT_SECRET_DEV']
     config.omniauth :discord, ENV['DISCORD_CLIENT_ID_DEV'], ENV['DISCORD_CLIENT_SECRET_DEV']
+    config.omniauth :github, ENV['GITHUB_CLIENT_ID_DEV'], ENV['GITHUB_CLIENT_SECRET_DEV']
   end
 
   # Configure the class responsible to send e-mails.
