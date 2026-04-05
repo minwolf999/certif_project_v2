@@ -2,6 +2,8 @@
 
 module Common
   class Title < ApplicationComponent
-    def initialize; end
+    def initialize(classes: '')
+      @classes = classes
+    end
   end
 end

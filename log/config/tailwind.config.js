@@ -30,10 +30,12 @@ module.exports = {
         
         // Border
         e0e0e0: '#e0e0e0',
+        ffffff: '#ffffff',
         
         
         // Background
         fdfdfd: '#fdfdfd',
+        f7f7f7: '#f7f7f7',
 
         // Background color
         primary: '#b8a9c9',
@@ -43,8 +45,14 @@ module.exports = {
         secondary_dark: '#76b2cb',
         secondary_light: '#a6deee',
       },
+      boxShadow: {
+        primary: '4px 4px 4px 0 rgba(0,0,0,0.25)',
+        light: '4px 4px 4px 0 rgba(0,0,0,0.1)',
+        dark: '4px 4px 4px 0 rgba(0,0,0,0.4)',
+      },
       fontSize: {
-        '2xs': ['0.625rem', { lineHeight: '0.75rem' }]
+        '2xs': ['0.625rem', { lineHeight: '0.75rem' }],
+        'xl-mid': ['1.75rem', { lineHeight: '1.75rem' }],
       },
       lineHeight: {
         'extra-tight': '0.75rem',
@@ -107,6 +115,7 @@ module.exports = {
     'w-3/5',
     'w-4/5',
     'w-5/5',
+    'shadow-primary',
   ],
   plugins: [],
 };

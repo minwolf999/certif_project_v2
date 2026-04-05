@@ -13,6 +13,8 @@
 #  encrypted_password     :string           default(""), not null
 #  otp_required_for_login :boolean          default(FALSE), not null
 #  otp_secret             :string
+#  otp_sent_at            :datetime
+#  provider               :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
@@ -28,5 +30,24 @@
 #
 class User < ApplicationRecord
   devise :database_authenticatable, :two_factor_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable,
-         :jwt_authenticatable, jwt_revocation_strategy: NullJwtStrategy
+         :jwt_authenticatable, :omniauthable, jwt_revocation_strategy: NullJwtStrategy, omniauth_providers: [:google_oauth2, :discord, :github]
+
+  def otp_recently_sent?
+    otp_sent_at.present? && otp_sent_at > 2.minutes.ago
+  end
+
+  def self.from_omniauth(auth)
+    return if auth.info.email.nil?
+
+    user = find_or_initialize_by(email: auth.info.email)
+
+    user.provider = auth.provider
+    user.email = auth.info.email
+    user.password ||= Devise.friendly_token[0, 20]
+
+    user.skip_confirmation!
+
+    user.save!
+    user
+  end
 end
