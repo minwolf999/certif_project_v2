@@ -1,19 +1,6 @@
 # frozen_string_literal: true
 
 class SessionsController < Devise::SessionsController
-  def create
-    super do
-      if session[:user_return_to].present?
-        current_user.update_column(:otp_already_give, true)
-        ResetOtpRequiredToTrue.set(wait: 3.hours).perform_later(user_id: current_user.id)
-
-        redirect_to session[:user_return_to]
-        session[:user_return_to] = nil
-        return
-      end
-    end
-  end
-
   def redirect_to_sign_in
     redirect_to new_user_session_path
   end
@@ -25,15 +12,25 @@ class SessionsController < Devise::SessionsController
       return redirect_to new_user_session_path, alert: I18n.t('devise.failure.invalid')
     end
 
-    if @user.otp_secret.nil?
-      @user.update(otp_secret: User.generate_otp_secret, otp_required_for_login: true)
+    if @user.otp_recently_sent?
+      flash.now[:alert] = t('.otp_already_sent')
+      @display_otp = true
+      @password = otp_params[:password]
+
+    else
+      otp_attribute = {
+        otp_required_for_login: true,
+        otp_sent_at: Time.current,
+      }
+      otp_attribute[:otp_secret] = User.generate_otp_secret if @user.otp_secret.nil?
+      @user.update(otp_attribute)
+      
+      UserMailer.with(user: @user).otp.deliver_later
+  
+      flash.now[:notice] = t('.otp_sent')
+      @display_otp = true
+      @password = otp_params[:password]
     end
-
-    UserMailer.with(user: @user).otp.deliver_later
-
-    flash.now[:notice] = "OTP sent (or resent)"
-    @display_otp = true
-    @password = otp_params[:password]
 
     render 'devise/sessions/new'
   end
