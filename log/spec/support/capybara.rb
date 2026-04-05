@@ -3,7 +3,7 @@
 require 'capybara/rspec'
 
 # TO DEBUG WITH FIREFOX OPEN : SET THIS TO FALSE
-HEADLESS = false
+HEADLESS = true
 
 Capybara.register_server :puma_in_test do |app, port, host|
   require 'rack/handler/puma'
