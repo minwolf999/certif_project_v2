@@ -31,7 +31,7 @@ RSpec.feature 'SignIns', type: :feature do
     end
   end
 
-  scenario 'signs up without password' do
+  scenario 'signs in without password' do
     visit new_user_session_path
     
     fill_in 'user_email', with: user.email
