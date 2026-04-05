@@ -7,7 +7,6 @@ module Users
     end
 
     def discord
-      debugger
       handle_omniauth(kind: 'Discord')
     end
 
