@@ -13,8 +13,8 @@ RSpec.feature 'SignUps', type: :feature do
     fill_in 'user_password', with: user.password
     fill_in 'user_password_confirmation', with: user.password
     click_button 'Sign up'
-    
-    expect(page).to have_current_path('/')
+
+    expect(page).to have_current_path(root_path)
   end
 
   scenario 'signs up with confirmation' do
@@ -24,20 +24,21 @@ RSpec.feature 'SignUps', type: :feature do
     fill_in 'user_password', with: unconfirmed_user.password
     fill_in 'user_password_confirmation', with: unconfirmed_user.password
     click_button 'Sign up'
+    puts "fichiers après click : #{Dir[Rails.root.join('tmp/mails/*')].inspect}"
 
     user = User.last
     expect(user.confirmed?).to be false
 
-    expect(ActionMailer::Base.deliveries.size).to eq(1)
+    expect(Dir[Rails.root.join('tmp/mails/*')].size).to eq(1)
 
     visit user_confirmation_path(confirmation_token: user.confirmation_token)
     expect(user.reload.confirmed?).to be true
     expect(page).to have_current_path(new_user_session_path)
   end
-  
+
   scenario 'signs up without password' do
     visit new_user_registration_path
-    
+
     fill_in 'user_email', with: user.email
     click_button 'Sign up'
 

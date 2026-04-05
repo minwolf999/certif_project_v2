@@ -11,7 +11,7 @@ Capybara.register_server :puma_in_test do |app, port, host|
     app,
     Host: host,
     Port: port,
-    Threads: '0:4',
+    Threads: '1:1',
     environment: 'test'
   )
 end

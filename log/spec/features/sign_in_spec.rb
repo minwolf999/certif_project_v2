@@ -11,32 +11,29 @@ RSpec.feature 'SignIns', type: :feature do
   end
 
   scenario 'signs in with otp confirmation' do
-    perform_enqueued_jobs do
-      visit new_user_session_path
+    visit new_user_session_path
 
-      fill_in 'user_email', with: user.email
-      fill_in 'user_password', with: user.password
-      click_button 'Sign in'
+    fill_in 'user_email', with: user.email
+    fill_in 'user_password', with: user.password
+    click_button 'Sign in'
 
-      expect(ActionMailer::Base.deliveries.size).to eq(1)
-      expect(page).to have_current_path(send_otp_path)
+    expect(Dir[Rails.root.join('tmp/mails/*')].size).to eq(1)
+    expect(page).to have_current_path(send_otp_path)
 
-      mail = ActionMailer::Base.deliveries.last
-      otp_code = mail.body.encoded.match(/(\d{6})/)[1]
+    otp_code = Mail.read(Dir[Rails.root.join('tmp/mails/*')].last).body.encoded.match(/(\d{6})/)[1]
 
-      fill_in 'user_otp_attempt', with: otp_code
-      click_button 'Sign in'
+    fill_in 'user_otp_attempt', with: otp_code
+    click_button 'Sign in'
 
-      expect(page).to have_current_path('/')
-    end
+    expect(page).to have_current_path(root_path)
   end
 
   scenario 'signs in without password' do
     visit new_user_session_path
-    
+      
     fill_in 'user_email', with: user.email
     click_button 'Sign in'
-
+  
     expect(page).to have_current_path(new_user_session_path, ignore_query: true)
   end
 end

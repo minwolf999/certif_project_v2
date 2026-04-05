@@ -6,6 +6,21 @@ require "active_support/core_ext/integer/time"
 # and recreated between test runs. Don't rely on the data there!
 
 Rails.application.configure do
+  encryption_config = Rails.application.config.active_record.encryption
+  if encryption_config
+    encryption_config.primary_key ||= ENV["ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY"] ||
+                                      Rails.application.credentials.active_record_encryption_primary_key ||
+                                      ("test_primary_key_#{SecureRandom.hex(16)}" if Rails.env.test?)
+
+    encryption_config.deterministic_key ||= ENV["ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY"] ||
+                                            Rails.application.credentials.active_record_encryption_deterministic_key ||
+                                            ("test_deterministic_key_#{SecureRandom.hex(16)}" if Rails.env.test?)
+
+    encryption_config.key_derivation_salt ||= ENV["ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT"] ||
+                                              Rails.application.credentials.active_record_encryption_key_derivation_salt ||
+                                              ("test_salt_#{SecureRandom.hex(16)}" if Rails.env.test?)
+  end
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # While tests run files are not watched, reloading is not necessary.
@@ -36,12 +51,13 @@ Rails.application.configure do
 
   # Disable caching for Action Mailer templates even if Action Controller
   # caching is enabled.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_caching = false
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3001 }
 
-  config.action_mailer.delivery_method = :test
+  config.action_mailer.delivery_method = :file
+  config.action_mailer.file_settings = { location: Rails.root.join('tmp/mails') }
   config.action_mailer.perform_deliveries = true
 
   # Unlike controllers, the mailer instance doesn't have any context about the
@@ -65,5 +81,5 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
 
-  config.active_job.queue_adapter = :test
+  config.active_job.queue_adapter = :inline
 end
