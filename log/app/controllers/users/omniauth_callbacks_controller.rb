@@ -7,6 +7,7 @@ module Users
     end
 
     def discord
+      debugger
       handle_omniauth(kind: 'Discord')
     end
 
@@ -25,7 +26,7 @@ module Users
         sign_in_and_redirect user, event: :authentication
       else
         reason = "#{auth.info.email} is not authorized."
-        reason = t('devise.omniauth_callback.email_not_verified', kind:) if auth.info.email.nil?
+        reason = t('devise.omniauth_callbacks.email_not_verified', kind:) if auth.info.email.nil?
 
         flash[:alert] = t('devise.omniauth_callbacks.failure', kind:, reason:)
         redirect_to new_session_path(:user)
