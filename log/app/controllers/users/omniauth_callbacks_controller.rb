@@ -24,7 +24,7 @@ module Users
         flash[:success] = t('devise.omniauth_callbacks.success', kind:)
         sign_in_and_redirect user, event: :authentication
       else
-        reason = "#{auth.info.email} is not authorized."
+        reason = t('devise.omniauth_callbacks.email_not_authorized', email: auth.info.email)
         reason = t('devise.omniauth_callbacks.email_not_verified', kind:) if auth.info.email.nil?
 
         flash[:alert] = t('devise.omniauth_callbacks.failure', kind:, reason:)

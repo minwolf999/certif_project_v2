@@ -2,6 +2,8 @@
 
 require 'spec_helper'
 require 'simplecov'
+require "omniauth"
+require "omniauth/test"
 
 SimpleCov.start 'rails' do
   add_filter '/bin/'
@@ -40,6 +42,10 @@ RSpec.configure do |config|
 
   config.before(:each, type: :model) do
     ActiveRecord::Base.connection.begin_transaction(joinable: false)
+  end
+
+  config.before(:suite) do
+    OmniAuth.config.test_mode = true
   end
 
   config.after(:each, type: :model) do
