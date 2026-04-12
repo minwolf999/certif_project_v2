@@ -1,0 +1,5 @@
+en:
+  sessions:
+    send_otp:
+      otp_already_sent: "An OTP was already sent recently. Please wait before requesting another code."
+      otp_sent: "OTP sent"

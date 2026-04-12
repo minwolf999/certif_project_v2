@@ -34,32 +34,32 @@ services:
     networks:
       - app-network
       
-  quizz:
-    build: ./quizz
-    container_name: quizz
-    restart: always
-    depends_on:
-      - db
-    networks:
-      - app-network
+  # quizz:
+  #   build: ./quizz
+  #   container_name: quizz
+  #   restart: always
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - app-network
 
-  forum:
-    build: ./forum
-    container_name: forum
-    restart: always
-    depends_on:
-      - db
-    networks:
-      - app-network
+  # forum:
+  #   build: ./forum
+  #   container_name: forum
+  #   restart: always
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - app-network
 
-  admin:
-    build: ./admin
-    container_name: admin
-    restart: always
-    depends_on:
-      - db
-    networks:
-      - app-network
+  # admin:
+  #   build: ./admin
+  #   container_name: admin
+  #   restart: always
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - app-network
 
 volumes:
   caddy_data:

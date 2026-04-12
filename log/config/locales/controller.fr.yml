@@ -1,0 +1,5 @@
+fr:
+  sessions:
+    send_otp:
+      otp_already_sent: "Le code de confirmation a déjà été envoyé. Veuillez réessayer plus tard."
+      otp_sent: "OTP envoyé"

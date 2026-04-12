@@ -1,0 +1,16 @@
+doctype html
+html class="scroll-smooth"
+  head
+    title
+      | Culture G
+    meta name="viewport" content="width=device-width,initial-scale=1"
+    meta name="turbo-cache-control" content="no-cache"
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "tailwind", "input", "data-turbo-track": "reload"
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_importmap_tags
+  body class="flex h-screen bg-gf3f3f3" data-controller="handle-turbo-no-content"
+    = render 'layouts/notifications'
+    main id="content" class="w-full min-h-screen bg-linear-to-br from-purple-200 via-pink-200 to-yellow-100"
+      = yield
