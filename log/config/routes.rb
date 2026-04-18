@@ -20,5 +20,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  root "rails/welcome#index" if Rails.env.test?
+  root "home#index"
 end

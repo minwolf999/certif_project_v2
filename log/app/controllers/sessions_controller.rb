@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class SessionsController < Devise::SessionsController
+  def create
+    self.resource = warden.authenticate!(auth_options)
+    sign_in(resource_name, resource, store: false)
+    render json: { token: request.env['warden-jwt_auth.token'] }
+  end
+
   def redirect_to_sign_in
     redirect_to new_user_session_path
   end
@@ -24,9 +30,9 @@ class SessionsController < Devise::SessionsController
       }
       otp_attribute[:otp_secret] = User.generate_otp_secret if @user.otp_secret.nil?
       @user.update(otp_attribute)
-      
+
       UserMailer.with(user: @user).otp.deliver_later
-  
+
       flash.now[:notice] = t('.otp_sent')
       @display_otp = true
       @password = otp_params[:password]
