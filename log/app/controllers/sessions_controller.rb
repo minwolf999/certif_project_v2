@@ -4,7 +4,10 @@ class SessionsController < Devise::SessionsController
   def create
     self.resource = warden.authenticate!(auth_options)
     sign_in(resource_name, resource, store: false)
-    render json: { token: request.env['warden-jwt_auth.token'] }
+
+    cookies[:culture_g] = request.env['warden-jwt_auth.token']
+
+    redirect_to root_path
   end
 
   def redirect_to_sign_in

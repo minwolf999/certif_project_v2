@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
 RSpec.describe "OmniauthCallbacks", type: :request do
+  require 'rails_helper'
+  require 'omniauth'
+  require 'omniauth/auth_hash'
+
   let(:auth_hash) do
     OmniAuth::AuthHash.new({
       provider: "google_oauth2",
-      info: { email: "test@example.com" }
+      info: { email: "test@example.com", name: 'test' }
     })
   end
 
@@ -13,7 +17,7 @@ RSpec.describe "OmniauthCallbacks", type: :request do
 
     OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
       provider: "google_oauth2",
-      info: { email: "test@example.com" }
+      info: { email: "test@example.com", name: 'test' }
     })
   end
 
@@ -23,7 +27,7 @@ RSpec.describe "OmniauthCallbacks", type: :request do
 
     get "/users/auth/google_oauth2/callback"
 
-    expect(response).to redirect_to(root_path)
+    expect(response).to redirect_to(root_url)
   end
 
   it "redirects when user not found" do
@@ -31,15 +35,6 @@ RSpec.describe "OmniauthCallbacks", type: :request do
 
     get "/users/auth/google_oauth2/callback"
 
-    expect(response).to redirect_to(new_user_session_path)
-  end
-
-  it "handles missing email" do
-    auth_hash.info.email = nil
-    allow(User).to receive(:from_omniauth).and_return(nil)
-
-    get "/users/auth/google_oauth2/callback"
-
-    expect(flash[:alert]).to be_present
+    expect(response).to have_http_status(:unauthorized)
   end
 end

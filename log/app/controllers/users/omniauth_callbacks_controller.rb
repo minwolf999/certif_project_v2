@@ -32,13 +32,9 @@ module Users
       sign_in(user, store: false)
       request.session_options[:skip] = true
       reset_session
-      redirect_to "#{root_url}?token=#{request.env['warden-jwt_auth.token']}"
 
-      # render json: {
-      #   token: request.env['warden-jwt_auth.token'],
-      #   user_id: user.id,
-      #   provider: kind
-      # }, status: :ok
+      cookies[:culture_g] = request.env['warden-jwt_auth.token']
+      redirect_to root_url
     end
 
     def auth
