@@ -19,6 +19,7 @@
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  unconfirmed_email      :string
+#  username               :string           not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -29,8 +30,6 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
-  include Devise::JWT::RevocationStrategies::JTIMatcher
-
   devise :database_authenticatable, :two_factor_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable,
          :jwt_authenticatable, :omniauthable, jwt_revocation_strategy: NullJwtStrategy, omniauth_providers: [:google_oauth2, :discord, :github]
 
@@ -57,7 +56,8 @@ class User < ApplicationRecord
     {
       sub: id,
       user: {
-        email: email
+        email: email,
+        username: username
       }
     }
   end

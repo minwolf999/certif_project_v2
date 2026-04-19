@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   
   devise_for :users, controllers: {
+    registrations: 'registrations',
     sessions: 'sessions',
     omniauth_callbacks: 'users/omniauth_callbacks',
   }
