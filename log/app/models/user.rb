@@ -29,6 +29,8 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
+  include Devise::JWT::RevocationStrategies::JTIMatcher
+
   devise :database_authenticatable, :two_factor_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable,
          :jwt_authenticatable, :omniauthable, jwt_revocation_strategy: NullJwtStrategy, omniauth_providers: [:google_oauth2, :discord, :github]
 
@@ -49,5 +51,14 @@ class User < ApplicationRecord
 
     user.save!
     user
+  end
+
+  def jwt_payload
+    {
+      sub: id,
+      user: {
+        email: email
+      }
+    }
   end
 end

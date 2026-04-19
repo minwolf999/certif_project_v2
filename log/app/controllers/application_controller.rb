@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user_from_jwt!
-    auth_header = request.headers['Authorization'] || "Bearer #{request.params[:token]}"
+    auth_header = cookies[:culture_g] || "Bearer #{request.params[:token]}"
     unless auth_header&.start_with?('Bearer ')
       redirect_to new_user_session_path
       return

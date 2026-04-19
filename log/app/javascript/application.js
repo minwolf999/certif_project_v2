@@ -7,22 +7,10 @@ const params = new URLSearchParams(window.location.search);
 const token = params.get("token");
 
 if (token) {
-  localStorage.setItem("jwt", token);
   window.history.replaceState({}, document.title, window.location.pathname);
-}
 
-// Ensuite, pour toutes les requêtes fetch :
-const jwt = localStorage.getItem("jwt");
+  var date = new Date();
+  date.setDate(date.getDate() + 1);
 
-if (jwt) {
-  window.fetch = (originalFetch => {
-    return (...args) => {
-      const [resource, config = {}] = args;
-      config.headers = {
-        ...(config.headers || {}),
-        Authorization: `Bearer ${jwt}`
-      };
-      return originalFetch(resource, config);
-    };
-  })(window.fetch);
+  document.cookie = `culture_g=Bearer ${token}; expires=${date}; path=/`;
 }
