@@ -32,13 +32,11 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user_from_jwt!
-    auth_header = cookies['culture_g']
-    if auth_header.nil?
+    token = cookies['culture_g']
+    if token.nil?
       redirect_to new_user_session_path
       return
     end
-
-    token = auth_header.split(' ').last
 
     begin
       payload, = JWT.decode(
