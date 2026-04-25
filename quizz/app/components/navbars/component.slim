@@ -1,15 +1,18 @@
-div class='relative' data-controller="navbar"
-  div class="opacity-100 w-full bg-white rounded-b-lg shadow-primary p-2 flex gap-4 transition-all duration-[1s] ease-in-out" data-navbar-target="navbar"
-    = render Common::Button::Component.new(focus: true) do 
-      = link_to 'Quizz', root_path
+div class='absolute left-0 top-2 flex transition-all duration-[1s] ease-in-out' data-controller="navbar" data-navbar-target="navbar"
+    div class="bg-white rounded-r-lg shadow-primary p-2 gap-4 flex flex-col"
+      = render Common::Button::Component.new(focus: true) do 
+        = link_to 'Quizz', root_path
 
-    = render Common::Button::Component.new(focus: false) do 
-      = link_to 'Forum', '/forum'
+      = render Common::Button::Component.new(focus: false) do 
+        = link_to 'Forum', '/forum'
 
-    = render Common::Button::Component.new(focus: false) do 
-      = link_to 'Profile', '/profile'
+      = render Common::Button::Component.new(focus: false) do 
+        = link_to 'Profile', '/profile'
 
-  div class='absolute right-3 top-3' data-action="click->navbar#toggle"
-    div data-navbar-target="icon" class="w-fit transition-transform duration-200 rotate-0"
-      = render Common::Button::Component.new(focus: false, class: 'py-1 px-1 hover:shadow-none') do
-        = render Common::Arrow::Component.new(kind: :down)
+      = render Common::Button::Component.new(focus: false, class: 'hover:shadow-red-500 hover:border-red-500') do
+        = link_to 'Log out', '/users/sign_out'
+
+    div class='ml-2' data-action="click->navbar#toggle"
+      div data-navbar-target="icon" class="w-fit rotate-0 transition-all duration-[1s] ease-in-out"
+        = render Common::Button::Component.new(focus: false, class: '!p-2 !shadow-none !hover:shadow-none') do
+          = render Common::Arrow::Component.new(kind: :right)
