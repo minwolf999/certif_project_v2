@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe "OmniauthCallbacks", type: :request do
-  require 'rails_helper'
-  require 'omniauth'
-  require 'omniauth/auth_hash'
+require 'rails_helper'
+require 'omniauth'
+require 'omniauth/auth_hash'
 
+RSpec.describe "OmniauthCallbacks", type: :request do
   let(:auth_hash) do
     OmniAuth::AuthHash.new({
       provider: "google_oauth2",
