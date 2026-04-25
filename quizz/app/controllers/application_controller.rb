@@ -8,19 +8,17 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     token = cookies['culture_g']
-    if token.nil?
-      return
+    if token.present?
+      payload, = JWT.decode(
+        token,
+        ENV['DEVISE_JWT_SECRET_KEY'] || Rails.application.credentials.devise_jwt_secret_key!,
+        true,
+        algorithm: 'HS256'
+      )
+
+      @current_user = payload['user']
+      @current_user = @current_user&.transform_keys(&:to_sym)
     end
-
-    payload, = JWT.decode(
-      token,
-      ENV['DEVISE_JWT_SECRET_KEY'] || Rails.application.credentials.devise_jwt_secret_key!,
-      true,
-      algorithm: 'HS256'
-    )
-
-    @current_user = payload['user']
-    @current_user = @current_user&.transform_keys(&:to_sym)
   rescue JWT::DecodeError, ActiveRecord::RecordNotFound
     @current_user = nil
   ensure
