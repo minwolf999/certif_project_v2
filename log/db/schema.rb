@@ -31,7 +31,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_04_19_142456) do
     t.string "unconfirmed_email"
     t.string "provider"
     t.datetime "otp_sent_at"
-    t.string "username", null: false
+    t.string "username"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
