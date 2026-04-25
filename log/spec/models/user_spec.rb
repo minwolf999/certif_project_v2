@@ -19,6 +19,7 @@
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  unconfirmed_email      :string
+#  username               :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -55,7 +56,7 @@ RSpec.describe User, type: :model do
     let(:auth) do
       OpenStruct.new(
         provider: 'google_oauth2',
-        info: OpenStruct.new(email: 'test@example.com')
+        info: OpenStruct.new(email: 'test@example.com', name: 'test')
       )
     end
 
@@ -63,6 +64,7 @@ RSpec.describe User, type: :model do
       expect { User.from_omniauth(auth) }.to change(User, :count).by(1)
       user = User.last
       expect(user.email).to eq('test@example.com')
+      expect(user.username).to eq('test')
       expect(user.provider).to eq('google_oauth2')
       expect(user.confirmed?).to be true
     end

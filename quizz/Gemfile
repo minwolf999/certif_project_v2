@@ -1,0 +1,48 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+gem 'bootsnap', require: false
+gem 'cancancan'
+gem 'dotenv-rails'
+gem 'importmap-rails'
+gem 'jbuilder'
+gem 'jwt'
+gem 'mailjet'
+gem 'pg'
+gem 'puma'
+gem 'rails'
+gem 'simple_form'
+gem 'slim-rails'
+gem 'sprockets-rails'
+gem 'stimulus-rails'
+gem 'tailwindcss-rails'
+gem 'turbo-rails'
+gem 'tzinfo-data', platforms: %i[windows jruby]
+gem 'view_component'
+
+
+group :development, :test do
+  gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
+  gem 'letter_opener'
+end
+
+group :development do
+  gem 'annotate'
+  gem 'slim_lint'
+  gem 'web-console'
+  gem 'hotwire-spark'
+  gem 'rubocop'
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+end
+
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner-active_record'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'rspec-rails'
+  gem 'selenium-webdriver'
+  gem 'simplecov', require: false
+end

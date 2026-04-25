@@ -3,7 +3,9 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_user!, unless: :devise_controller?
+  before_action :authenticate_user_from_jwt!, unless: :devise_controller?
+
+  skip_before_action :verify_authenticity_token
 
   after_action :raise_on_empty_response
 
@@ -27,5 +29,32 @@ class ApplicationController < ActionController::Base
     if response.status == 204
       raise "No template rendered for #{controller_name}##{action_name}"
     end
+  end
+
+  def authenticate_user_from_jwt!
+    token = cookies['culture_g']
+    if token.nil?
+      redirect_to new_user_session_path
+      return
+    end
+
+    begin
+      payload, = JWT.decode(
+        token,
+        ENV['DEVISE_JWT_SECRET_KEY'] || Rails.application.credentials.devise_jwt_secret_key!,
+        true,
+        algorithm: 'HS256'
+      )
+
+      @current_user = User.find_by(id: payload['sub'])
+    rescue JWT::DecodeError, ActiveRecord::RecordNotFound
+      @current_user = nil
+    ensure
+      redirect_to new_user_session_path if @current_user.nil?
+    end
+  end
+
+  def current_user
+    @current_user
   end
 end

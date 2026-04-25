@@ -1,0 +1,10 @@
+#notifications
+  = render Notification::ContainerComponent.new do |container|
+    - Array(flash[:success]).each do |msg|
+      - container.with_toaster(notif_type: 'success', message: msg)
+    - Array(flash[:notice]).each do |msg|
+      - container.with_toaster(notif_type: 'info', message: msg)
+    - Array(flash[:alert]).each do |msg|
+      - container.with_toaster(notif_type: 'error', message: msg)
+    - Array(flash[:warning]).each do |msg|
+      - container.with_toaster(notif_type: 'warning', message: msg)
