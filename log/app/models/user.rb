@@ -44,7 +44,7 @@ class User < ApplicationRecord
 
     user.provider = auth.provider
     user.email = auth.info.email
-    user.username = auth.info.name
+    user.username = auth.info.name.presence || auth.info.email.split('@').first.presence || "#{auth.provider}_#{auth.uid}"
     user.password ||= Devise.friendly_token[0, 20]
 
     user.skip_confirmation!

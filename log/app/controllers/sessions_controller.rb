@@ -5,7 +5,12 @@ class SessionsController < Devise::SessionsController
     self.resource = warden.authenticate!(auth_options)
     sign_in(resource_name, resource, store: false)
 
-    cookies[:culture_g] = request.env['warden-jwt_auth.token']
+    cookies[:culture_g] = {
+      value: request.env['warden-jwt_auth.token'],
+      httponly: true,
+      secure: Rails.env.production?,
+      same_site: :lax
+    }
 
     redirect_to root_path
   end
