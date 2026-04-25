@@ -57,6 +57,7 @@ class User < ApplicationRecord
     {
       sub: id,
       user: {
+        id: id,
         email: email,
         username: username
       }
