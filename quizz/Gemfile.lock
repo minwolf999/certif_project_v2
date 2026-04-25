@@ -133,9 +133,18 @@ GEM
       logger
     faraday-net_http (3.4.2)
       net-http (~> 0.5)
+    ffi (1.17.3-aarch64-linux-gnu)
+    ffi (1.17.3-aarch64-linux-musl)
+    ffi (1.17.3-arm-linux-gnu)
+    ffi (1.17.3-arm-linux-musl)
+    ffi (1.17.3-arm64-darwin)
+    ffi (1.17.3-x86_64-darwin)
     ffi (1.17.3-x86_64-linux-gnu)
+    ffi (1.17.3-x86_64-linux-musl)
     globalid (1.3.0)
       activesupport (>= 6.1)
+    hashie (5.1.0)
+      logger
     hotwire-spark (0.1.13)
       listen
       rails (>= 7.0.0)
@@ -370,6 +379,10 @@ GEM
     tailwindcss-rails (3.3.2)
       railties (>= 7.0.0)
       tailwindcss-ruby (~> 3.0)
+    tailwindcss-ruby (3.4.19-aarch64-linux)
+    tailwindcss-ruby (3.4.19-arm-linux)
+    tailwindcss-ruby (3.4.19-arm64-darwin)
+    tailwindcss-ruby (3.4.19-x86_64-darwin)
     tailwindcss-ruby (3.4.19-x86_64-linux)
     temple (0.10.4)
     thor (1.5.0)
@@ -426,6 +439,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
+  hashie (~> 5.1)
   hotwire-spark
   importmap-rails
   jbuilder

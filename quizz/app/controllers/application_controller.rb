@@ -4,6 +4,12 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
 
+  def current_user
+    return if @current_user.nil?
+
+    Hashie::Mash.new(@current_user)
+  end
+
   private
 
   def authenticate_user!
