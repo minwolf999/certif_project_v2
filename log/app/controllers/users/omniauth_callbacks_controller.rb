@@ -33,7 +33,12 @@ module Users
       request.session_options[:skip] = true
       reset_session
 
-      cookies[:culture_g] = request.env['warden-jwt_auth.token']
+      cookies[:culture_g] = {
+        value: request.env['warden-jwt_auth.token'],
+        httponly: true,
+        secure: Rails.env.production?,
+        same_site: :lax
+      }
       redirect_to root_url
     end
 
