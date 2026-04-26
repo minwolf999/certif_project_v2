@@ -14,6 +14,8 @@
 #
 class Quiz < ApplicationRecord
   has_many :answers
+  has_many :likes
+  has_many :dislikes
   has_many :scores
 
   validate :good_answer?
