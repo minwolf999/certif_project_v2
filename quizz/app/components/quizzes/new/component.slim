@@ -1,0 +1,11 @@
+div class="flex flex-col gap-2 w-[70%] max-h-screen overflow-scroll bg-white m-auto rounded-xl shadow-primary p-4 mt-5"
+  = simple_form_for @quiz, data: { turbo: false, changed: false } do |form|
+    = form.input :title, required: true 
+    = form.input :description, required: true
+
+    = render Questions::New::Component.new(form: form)
+
+    div class="mx-auto my-[1vh] w-[85%] border-b-2"
+
+    = render Common::Button::Component.new(focus: true) do 
+      = form.submit 'Submit', class: '!bg-transparent !border-0 !p-0 !m-0 !shadow-none'

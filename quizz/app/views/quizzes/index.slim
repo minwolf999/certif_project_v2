@@ -1,9 +1,9 @@
 div class="flex gap-10 lg:h-screen flex-col lg:flex-row"
   div class="flex flex-col gap-2 w-[85%] lg:w-[70%] max-h-screen lg:h-[95vh] overflow-scroll bg-white mt-[3vh] lg:my-auto mx-auto lg:ml-[3%] rounded-xl shadow-primary"
-    = render Quizzes::Filter.new
+    = render Quizzes::Filter::Component.new
     div class="mx-auto my-[1vh] w-[85%] border-b-2"
     = turbo_frame_tag :quizzes
-      = render Quizzes::List.new(quizs: @quizzes)
+      = render Quizzes::List::Component.new(quizzes: @quizzes)
 
   div class="flex flex-col gap-2 w-[80%] lg:w-[30%] max-h-screen lg:h-[95vh] mb-[2vh] lg:my-auto overflow-scroll bg-white mx-auto lg:mr-[3%] rounded-xl shadow-primary"
-    = render Quizzes::History.new(quizs: @history)
+    = render Quizzes::History::Component.new(quizzes: @history)

@@ -1,2 +1,2 @@
 = turbo_stream.update :quizzes do
-  = render Quizzes::List.new(quizs: @quizzes)
+  = render Quizzes::List::Component.new(quizzes: @quizzes)

@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     Hashie::Mash.new(@current_user)
   end
 
+  before_action do
+    Current::User.user = current_user
+  end
+
   private
 
   def authenticate_user!

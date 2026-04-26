@@ -4,21 +4,21 @@
 #
 # Table name: answers
 #
-#  id         :bigint           not null, primary key
-#  good?      :boolean          not null
-#  title      :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  quiz_id    :bigint           not null
+#  id          :bigint           not null, primary key
+#  good        :boolean          not null
+#  title       :string           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  question_id :bigint           not null
 #
 # Indexes
 #
-#  index_answers_on_quiz_id  (quiz_id)
+#  index_answers_on_question_id  (question_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (quiz_id => quizzes.id)
+#  fk_rails_...  (question_id => questions.id)
 #
 class Answer < ApplicationRecord
-  belongs_to :quiz
+  belongs_to :question
 end
