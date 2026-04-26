@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-module Quizzes
-  module History
+module Questions
+  module New
     class Component < ApplicationComponent
-      def initialize(quizzes:)
-        @quizs = quizzes || []
+      def initialize(form:)
+        @form = form
       end
     end
   end

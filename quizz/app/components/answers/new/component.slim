@@ -1,0 +1,5 @@
+= @form.simple_fields_for :answers do |answer_f|
+  - i = answer_f.options[:child_index] || 0
+  div class='flex justify-evenly'
+    = answer_f.input :title, label: "Answer #{i + 1}"
+    = answer_f.input :good, as: :boolean

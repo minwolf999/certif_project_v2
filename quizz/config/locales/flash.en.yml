@@ -1,0 +1,5 @@
+en:
+  flash:
+    quizzes:
+      create:
+        success: Quiz created successfully !

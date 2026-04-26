@@ -7,8 +7,10 @@ fr:
       logout: Se Déconnecter
   quizzes:
     history:
-      title: Historique des quiz compléter
+      component:
+        title: Historique des quiz compléter
     filter:
-      title: Filtre
-      search_placeholder: Rechercher ...
-      new: Nouveau quiz
+      component:
+        title: Filtre
+        search_placeholder: Rechercher ...
+        new: Nouveau quiz

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 module Quizzes
-  module History
+  module List
     class Component < ApplicationComponent
       def initialize(quizzes:)
-        @quizs = quizzes || []
+        @quizzes = quizzes
       end
     end
   end

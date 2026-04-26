@@ -7,8 +7,10 @@ en:
       logout: Log Out
   quizzes:
     history:
-      title: Quiz history
+      component:
+        title: Quiz history
     filter:
-      title: Filter
-      search_placeholder: Search ...
-      new: New quiz
+      component:
+        title: Filter
+        search_placeholder: Search ...
+        new: New quiz

@@ -2,6 +2,11 @@
 
 module Quizzes
   module New
-    class Component < ApplicationComponent; end
+    class Component < ApplicationComponent
+      def initialize(quiz:)
+        @quiz = quiz
+        @user = Current::User.user
+      end
+    end
   end
 end
