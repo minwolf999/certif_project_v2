@@ -1,0 +1,16 @@
+fr:
+  navbar:
+    component:
+      quiz: Quiz
+      forum: Forum
+      profile: Profile
+      logout: Se Déconnecter
+  quizzes:
+    history:
+      component:
+        title: Historique des quiz complétés
+    filter:
+      component:
+        title: Filtre
+        search_placeholder: Rechercher ...
+        new: Nouveau quiz

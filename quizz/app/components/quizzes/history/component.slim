@@ -1,0 +1,12 @@
+div class='mx-auto w-fit'
+  h1
+    = t('.title')
+
+div class='mt-2 flex flex-col gap-4'
+  - @quizzes.each do |quiz|
+    div class='shadow-primary rounded-xl bg-f7f7f7 text-center w-5/6 mx-auto'
+      h2 class='text-2xl font-bold'
+        = quiz.title
+
+      = "Score: #{quiz.score_for(current_user)}"
+  

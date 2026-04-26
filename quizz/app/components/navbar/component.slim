@@ -1,0 +1,18 @@
+div class='absolute left-0 top-2 flex transition-all duration-[1s] ease-in-out' data-controller="navbar" data-navbar-target="navbar"
+    div class="bg-white rounded-r-lg shadow-primary p-2 gap-4 flex flex-col"
+      = render Common::Button::Component.new(focus: true) do 
+        = link_to t('.quiz'), root_path
+
+      = render Common::Button::Component.new(focus: false) do 
+        = link_to t('.forum'), '/forum'
+
+      = render Common::Button::Component.new(focus: false) do 
+        = link_to t('.profile'), '/profile'
+
+      = render Common::Button::Component.new(focus: false, class: 'hover:shadow-red-500 hover:border-red-500') do
+        = link_to t('.logout'), '/users/sign_out'
+
+    div class='ml-2' data-action="click->navbar#toggle"
+      div data-navbar-target="icon" class="w-fit rotate-0 transition-all duration-[1s] ease-in-out"
+        = render Common::Button::Component.new(focus: false, class: '!p-2 !shadow-none !hover:shadow-none') do
+          = render Common::Arrow::Component.new(kind: :right)

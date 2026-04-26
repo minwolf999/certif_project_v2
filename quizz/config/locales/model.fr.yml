@@ -1,0 +1,5 @@
+fr:
+  model:
+    validate:
+      quiz:
+        answers: 'Vous devez avoir au minimum une bonne réponse et une mauvaise réponse à votre quiz.'

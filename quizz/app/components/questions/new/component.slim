@@ -1,0 +1,8 @@
+div class="mx-auto my-[1vh] w-[85%] border-b-2"
+
+= @form.simple_fields_for :questions do |question_f|
+  div class='flex justify-evenly'
+    = question_f.input :title, required: true
+    = question_f.input :score, required: true, default: 1, max: 10
+  
+  = render Answers::New::Component.new(form: question_f)

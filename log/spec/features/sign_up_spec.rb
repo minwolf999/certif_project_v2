@@ -6,21 +6,23 @@ RSpec.feature 'SignUps', type: :feature do
   let(:user) { build(:user) }
   let(:unconfirmed_user) { build(:user, :unconfirmed) }
 
-  scenario 'signs up without confirmation' do
+  scenario 'signs up without confirmation', js: true do
     visit new_user_registration_path
 
     fill_in 'user_email', with: user.email
+    fill_in 'user_username', with: user.username
     fill_in 'user_password', with: user.password
     fill_in 'user_password_confirmation', with: user.password
     click_button 'Sign up'
 
-    expect(page).to have_current_path(root_path)
+    expect(page).to have_current_path(new_user_session_path)
   end
 
-  scenario 'signs up with confirmation' do
+  scenario 'signs up with confirmation', js: true do
     visit new_user_registration_path
 
     fill_in 'user_email', with: unconfirmed_user.email
+    fill_in 'user_username', with: unconfirmed_user.username
     fill_in 'user_password', with: unconfirmed_user.password
     fill_in 'user_password_confirmation', with: unconfirmed_user.password
     click_button 'Sign up'
@@ -36,7 +38,7 @@ RSpec.feature 'SignUps', type: :feature do
     expect(page).to have_current_path(new_user_session_path)
   end
 
-  scenario 'signs up without password' do
+  scenario 'signs up without password', js: true do
     visit new_user_registration_path
 
     fill_in 'user_email', with: user.email
@@ -45,10 +47,11 @@ RSpec.feature 'SignUps', type: :feature do
     expect(page).to have_current_path(new_user_registration_path, ignore_query: true)
   end
 
-  scenario 'signs up with password confirmation error' do
+  scenario 'signs up with password confirmation error', js: true do
     visit new_user_registration_path
 
     fill_in 'user_email', with: user.email
+    fill_in 'user_username', with: user.username
     fill_in 'user_password', with: user.password
     fill_in 'user_password_confirmation', with: "#{user.password}&"
     click_button 'Sign up'

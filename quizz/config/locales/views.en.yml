@@ -1,0 +1,16 @@
+en:
+  navbar:
+    component:
+      quiz: Quiz
+      forum: Forum
+      profile: Profile
+      logout: Log Out
+  quizzes:
+    history:
+      component:
+        title: Quiz history
+    filter:
+      component:
+        title: Filter
+        search_placeholder: Search ...
+        new: New quiz

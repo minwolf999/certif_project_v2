@@ -19,6 +19,7 @@
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  unconfirmed_email      :string
+#  username               :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -43,11 +44,23 @@ class User < ApplicationRecord
 
     user.provider = auth.provider
     user.email = auth.info.email
+    user.username = auth.info.name.presence || auth.info.email.split('@').first.presence || "#{auth.provider}_#{auth.uid}"
     user.password ||= Devise.friendly_token[0, 20]
 
     user.skip_confirmation!
 
     user.save!
     user
+  end
+
+  def jwt_payload
+    {
+      sub: id,
+      user: {
+        id: id,
+        email: email,
+        username: username
+      }
+    }
   end
 end

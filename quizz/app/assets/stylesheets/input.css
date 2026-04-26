@@ -1,0 +1,72 @@
+.simple-form-wrapper {
+    position: relative;
+
+    label {
+        display: flex;
+        align-items: center;
+    }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+}
+
+.file label {
+    font-size: .875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    color: rgb(148 148 148/var(--tw-text-opacity, 1));
+}
+
+input[type="file"] {
+    cursor: pointer;
+
+    font-size: .875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    color: rgb(67 67 67);
+    background-color: white;
+
+    padding: 0;
+    border: 1px solid rgb(148, 148, 148);
+    border-radius: .375rem;
+}
+
+input[type="file"].rounded-t-none {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+input[type="file"]:focus {
+    outline-color: rgb(148, 148, 148);
+}
+
+input[type="file"]::file-selector-button {
+    cursor: pointer;
+
+    font-size: .875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    color: rgb(67 67 67);
+
+    border: none;
+    border-right: 1px solid rgb(148, 148, 148);
+    margin-right: 12px;
+    padding: 6px 12px;
+}
+
+input[type="submit"] {
+    box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.3);
+    background-color: rgb(var(--color-primary));
+}
+
+input[type="submit"]:focus {
+    outline-color: rgb(var(--color-primary))
+}

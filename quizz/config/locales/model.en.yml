@@ -1,0 +1,5 @@
+en:
+  model:
+    validate:
+      quiz:
+        answers: 'You must have at least one correct answer and one incorrect answer on your quiz.'

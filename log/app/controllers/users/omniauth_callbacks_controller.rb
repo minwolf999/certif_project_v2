@@ -19,17 +19,27 @@ module Users
     def handle_omniauth(kind:)
       user = User.from_omniauth(auth)
 
-      if user.present?
-        sign_out_all_scopes
-        flash[:success] = t('devise.omniauth_callbacks.success', kind:)
-        sign_in_and_redirect user, event: :authentication
-      else
-        reason = t('devise.omniauth_callbacks.email_not_authorized', email: auth.info.email)
-        reason = t('devise.omniauth_callbacks.email_not_verified', kind:) if auth.info.email.nil?
+      unless user
+        reason = if auth.info.email.nil?
+                   t('devise.omniauth_callbacks.email_not_verified', kind:)
+                 else
+                   t('devise.omniauth_callbacks.email_not_authorized', email: auth.info.email)
+                 end
 
-        flash[:alert] = t('devise.omniauth_callbacks.failure', kind:, reason:)
-        redirect_to new_session_path(:user)
+        return render json: { error: reason }, status: :unauthorized
       end
+
+      sign_in(user, store: false)
+      request.session_options[:skip] = true
+      reset_session
+
+      cookies[:culture_g] = {
+        value: request.env['warden-jwt_auth.token'],
+        httponly: true,
+        secure: Rails.env.production?,
+        same_site: :lax
+      }
+      redirect_to root_url
     end
 
     def auth
