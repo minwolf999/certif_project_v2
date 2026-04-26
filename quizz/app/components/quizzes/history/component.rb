@@ -4,7 +4,7 @@ module Quizzes
   module History
     class Component < ApplicationComponent
       def initialize(quizzes:)
-        @quizs = quizzes || []
+        @quizzes = quizzes || []
       end
     end
   end
