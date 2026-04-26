@@ -8,3 +8,7 @@ fr:
   quizzes:
     history:
       title: Historique des quiz compléter
+    filter:
+      title: Filtre
+      search_placeholder: Rechercher ...
+      new: Nouveau quiz

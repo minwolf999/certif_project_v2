@@ -12,7 +12,7 @@ module Common
         common_classes = 'rounded-full py-2 px-4 cursor-pointer '
 
         kind_classes = if @focus
-                         'bg-primary text-f5f5f5 shadow-primary '
+                         'bg-primary text-f5f5f5 shadow-primary hover:bg-primary_dark shadow-primary_dark '
                        else
                          'bg-white text-333333 border-solid border-2 border-e0e0e0 hover:shadow-primary hover:border-primary '
                        end

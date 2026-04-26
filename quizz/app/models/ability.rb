@@ -6,7 +6,7 @@ class Ability
   def initialize(user)
     return unless user
 
-    can :read, Quiz, user_id: user.id
+    can :read, Quiz
     can :manage, Quiz, user_id: user.id
   end
 end

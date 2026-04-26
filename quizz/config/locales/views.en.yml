@@ -8,3 +8,7 @@ en:
   quizzes:
     history:
       title: Quiz history
+    filter:
+      title: Filter
+      search_placeholder: Search ...
+      new: New quiz
