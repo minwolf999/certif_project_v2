@@ -11,4 +11,12 @@ class QuizzesController < ApplicationController
       format.turbo_stream { render layout: false }
     end
   end
+
+  def new; end
+
+  def create
+    debugger
+
+    redirect_to quizzes_path
+  end
 end
