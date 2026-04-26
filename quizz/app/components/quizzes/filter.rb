@@ -3,6 +3,5 @@
 module Quizzes
   class Filter < ApplicationComponent
     include Turbo::FramesHelper
-
-   end
+  end
 end
