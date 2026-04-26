@@ -2,4 +2,4 @@ en:
   flash:
     quizzes:
       create:
-        success: Quiz created successfully !
+        success: Quiz created successfully!

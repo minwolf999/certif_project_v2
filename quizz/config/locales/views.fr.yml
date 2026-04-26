@@ -8,7 +8,7 @@ fr:
   quizzes:
     history:
       component:
-        title: Historique des quiz compléter
+        title: Historique des quiz complétés
     filter:
       component:
         title: Filtre
