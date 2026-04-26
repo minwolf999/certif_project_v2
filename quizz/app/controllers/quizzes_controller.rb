@@ -26,7 +26,7 @@ class QuizzesController < ApplicationController
       redirect_to quizzes_path
     else
       flash.now[:alert] = @quiz.errors.full_messages.join(',')
-      render :new, status: :unprocessable_content
+      render :new, status: :unprocessable_entity
     end
   end
 
