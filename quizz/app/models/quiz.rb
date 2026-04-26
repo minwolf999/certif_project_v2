@@ -14,8 +14,14 @@
 #
 class Quiz < ApplicationRecord
   has_many :answers
+  has_many :scores
 
   validate :good_answer?
+
+  def score_for(user)
+    user_scores = scores.where(user_id: user.id)
+    user_scores.sum(&:point)
+  end
 
   private
 

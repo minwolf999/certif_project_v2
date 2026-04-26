@@ -1,0 +1,10 @@
+en:
+  navbar:
+    component:
+      quiz: Quiz
+      forum: Forum
+      profile: Profile
+      logout: Log Out
+  quizzes:
+    history:
+      title: Quiz history
