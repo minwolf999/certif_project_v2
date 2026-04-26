@@ -19,6 +19,7 @@ class QuizzesController < ApplicationController
 
   def create
     @quiz = Quiz.new(create_params)
+    @quiz.user_id = current_user.id
 
     if @quiz.save
       flash[:success] = I18n.t('flash.quizzes.create.success')
@@ -35,7 +36,6 @@ class QuizzesController < ApplicationController
     params.require(:quiz).permit(
       :title,
       :description,
-      :user_id,
       questions_attributes: [
         :title,
         :score,
