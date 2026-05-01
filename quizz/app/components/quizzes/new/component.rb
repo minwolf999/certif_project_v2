@@ -3,6 +3,8 @@
 module Quizzes
   module New
     class Component < ApplicationComponent
+      include Turbo::FramesHelper
+
       def initialize(quiz:)
         @quiz = quiz
         @user = Current::User.user

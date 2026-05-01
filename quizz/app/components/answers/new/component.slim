@@ -1,4 +1,7 @@
-= @form.simple_fields_for :answers do |answer_f|
-  div class='flex justify-evenly'
-    = answer_f.input :title, label: "Answer #{(answer_f.options[:child_index] || 0) + 1}"
-    = answer_f.input :good, as: :boolean
+- (0...4).each do |i|
+  - answer = @form.object.answers[i] || Answer.new
+  = fields_for "#{@form.object_name}[answers_attributes][#{i}]", answer, builder: SimpleForm::FormBuilder do |answer_f|
+
+    div.flex.justify-evenly
+      = answer_f.input :title
+      = answer_f.input :good, as: :boolean

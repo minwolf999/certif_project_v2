@@ -6,6 +6,9 @@ fr:
       profile: Profile
       logout: Se Déconnecter
   quizzes:
+    new:
+      component:
+        add_question: Ajouter une question
     history:
       component:
         title: Historique des quiz complétés

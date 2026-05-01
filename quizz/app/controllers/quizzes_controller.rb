@@ -12,10 +12,7 @@ class QuizzesController < ApplicationController
     end
   end
 
-  def new
-    question = @quiz.questions.build
-    4.times { question.answers.build }
-  end
+  def new; end
 
   def create
     @quiz = Quiz.new(create_params)

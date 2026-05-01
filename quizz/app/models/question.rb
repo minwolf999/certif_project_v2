@@ -31,6 +31,6 @@ class Question < ApplicationRecord
   def good_answer?
     return if answers.any?(&:good) && !answers.all?(&:good)
 
-    errors.add(:answers, t('model.validate.quiz.answers'))
+    errors.add(:answers, I18n.t('model.validate.quiz.answers'))
   end
 end

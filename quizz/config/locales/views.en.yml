@@ -6,6 +6,9 @@ en:
       profile: Profile
       logout: Log Out
   quizzes:
+    new:
+      component:
+        add_question: Add a question
     history:
       component:
         title: Quiz history

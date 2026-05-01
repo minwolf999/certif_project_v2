@@ -3,8 +3,9 @@
 module Answers
   module New
     class Component < ApplicationComponent
-      def initialize(form:)
+      def initialize(form:, answer:)
         @form = form
+        @answer = answer
       end
     end
   end
