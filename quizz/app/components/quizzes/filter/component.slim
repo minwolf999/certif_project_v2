@@ -13,5 +13,6 @@ div class='px-4 pt-4'
           focus: true,
           class: 'pl-2 rounded-xl border-2 outline-none transition-all duration-280 focus:border-primary_dark focus:shadow-primary'
 
-      = render Common::Button::Component.new(focus: true, class: '!w-fit whitespace-nowrap') do 
-        = link_to t('.new'), new_quiz_path
+      = link_to  new_quiz_path do
+        = render Common::Button::Component.new(focus: true, class: '!w-fit whitespace-nowrap') do 
+          = t('.new')

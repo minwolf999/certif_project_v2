@@ -1,8 +1,8 @@
 div class="mx-auto my-[1vh] w-[85%] border-b-2"
 
 = fields_for "quiz[questions_attributes][#{Time.current.to_i}]", @question, builder: SimpleForm::FormBuilder do |question_f|
-  div.flex.justify-evenly
-    = question_f.input :title, required: true
-    = question_f.input :score, required: true, input_html: { max: 10, value: 1 }
+  div.flex.justify-evenly.mb-3
+    = question_f.input :title, required: true, input_html: { class: 'bg-f7f7f7 shadow-dark' }
+    = question_f.input :score, required: true, input_html: { class: 'bg-f7f7f7 shadow-dark', max: 10, value: 1 }
 
   = render Answers::New::Component.new(form: question_f, answer: Answer.new)

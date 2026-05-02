@@ -2,8 +2,9 @@ div class="min-h-screen flex items-center justify-center"
   div class="flex flex-col gap-2 w-[70%] max-h-[90vh] overflow-scroll bg-white rounded-xl shadow-primary p-4"
 
     = simple_form_for @quiz, data: { turbo: false, changed: false } do |form|
-      = form.input :title, required: true 
-      = form.input :description, required: true
+      .flex.flex-col.gap-3
+        = form.input :title, required: true, input_html: { class: 'bg-f7f7f7 shadow-dark' }
+        = form.input :description, required: true, input_html: { class: 'bg-f7f7f7 shadow-dark' }
 
       = turbo_frame_tag "questions" do
         = render Questions::New::Component.new(Question.new)
@@ -15,6 +16,6 @@ div class="min-h-screen flex items-center justify-center"
         data: { turbo: true, turbo_frame: "questions" },
         class: "underline"
 
-
-      = render Common::Button::Component.new(focus: true) do 
-        = form.submit t('.submit'), class: '!bg-transparent !border-0 !p-0 !m-0 !shadow-none'
+      = button_tag type: :submit, class: "w-full" do
+        = render Common::Button::Component.new(focus: true) do
+          = t('.submit')

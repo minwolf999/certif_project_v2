@@ -5,10 +5,16 @@ fr:
       forum: Forum
       profile: Profile
       logout: Se Déconnecter
+  answers:
+    new:
+      component:
+        title: Réponses
+        good: Est-ce une bonne réponse ?
   quizzes:
     new:
       component:
         add_question: Ajouter une question
+        submit: Enregistrer
     history:
       component:
         title: Historique des quiz complétés

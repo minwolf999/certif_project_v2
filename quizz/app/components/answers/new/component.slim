@@ -1,7 +1,11 @@
+div.grid.grid-cols-2.gap-4.mb-3
+  .font-medium.text-center = t('.title')
+  .font-medium.text-center = t('.good')
+
 - (0...4).each do |i|
   - answer = @form.object.answers[i] || Answer.new
-  = fields_for "#{@form.object_name}[answers_attributes][#{i}]", answer, builder: SimpleForm::FormBuilder do |answer_f|
 
-    div.flex.justify-evenly
-      = answer_f.input :title
-      = answer_f.input :good, as: :boolean
+  = fields_for "#{@form.object_name}[answers_attributes][#{i}]", answer, builder: SimpleForm::FormBuilder do |answer_f|
+    div.grid.grid-cols-2.gap-4.mb-3.items-center
+      = answer_f.input :title, label: false, input_html: { class: 'bg-f7f7f7 shadow-dark w-2/3 mx-auto' }
+      = answer_f.input :good, as: :boolean, label: false, wrapper_html: { class: 'flex justify-center items-center my-auto h-full' }

@@ -5,10 +5,16 @@ en:
       forum: Forum
       profile: Profile
       logout: Log Out
+  answers:
+    new:
+      component:
+        title: Answers
+        good: Is a good Answer ?
   quizzes:
     new:
       component:
         add_question: Add a question
+        submit: Submit
     history:
       component:
         title: Quiz history
