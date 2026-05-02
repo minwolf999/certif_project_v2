@@ -3,6 +3,8 @@
 module Quizzes
   module List
     class Component < ApplicationComponent
+      include InlineSvg::ActionView::Helpers
+
       def initialize(quizzes:)
         @quizzes = quizzes
       end

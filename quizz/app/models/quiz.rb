@@ -19,6 +19,8 @@ class Quiz < ApplicationRecord
 
   accepts_nested_attributes_for :questions, allow_destroy: true
 
+  scope :by_title, ->(title) { where('unaccent(quizzes.title) ILIKE unaccent(?)', "%#{title.downcase}%") }
+
   def score_for(user)
     user_scores = scores.where(user_id: user.id)
     user_scores.sum(&:point)

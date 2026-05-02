@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
 class QuizzesController < ApplicationController
+  include HasScope
+
+  has_scope :by_title
+
   load_and_authorize_resource
 
   def index
+    @quizzes = apply_scopes(@quizzes).order(created_at: :desc)
     @history = @quizzes.joins(:scores).where(scores: { user_id: current_user.id })
 
     respond_to do |format|
