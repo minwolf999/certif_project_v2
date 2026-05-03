@@ -11,6 +11,9 @@ fr:
         title: Réponses
         good: Est-ce une bonne réponse ?
   quizzes:
+    result:
+      component:
+        final_result: 'Votre score est de:'
     show:
       component:
         start: Commencer le quiz

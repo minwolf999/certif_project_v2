@@ -10,11 +10,10 @@ en:
       component:
         title: Answers
         good: Is a good Answer ?
-  questions:
-    show:
-      component:
-        
   quizzes:
+    result:
+      component:
+        final_result: 'Your result is:'
     show:
       component:
         start: Start the quiz
