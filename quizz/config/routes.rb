@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ('/')
   resources :quizzes
-  resources :questions, only: [:new]
+  resources :questions, only: [:new, :show]
 
   root 'quizzes#index'
 end

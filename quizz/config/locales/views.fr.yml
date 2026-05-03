@@ -11,6 +11,10 @@ fr:
         title: Réponses
         good: Est-ce une bonne réponse ?
   quizzes:
+    show:
+      component:
+        start: Commencer le quiz
+        statisticals: Statistiques
     new:
       component:
         add_question: Ajouter une question

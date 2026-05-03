@@ -32,6 +32,8 @@ class QuizzesController < ApplicationController
     end
   end
 
+  def show; end
+
   private
 
   def create_params

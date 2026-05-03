@@ -11,6 +11,10 @@ en:
         title: Answers
         good: Is a good Answer ?
   quizzes:
+    show:
+      component:
+        start: Start the quiz
+        statisticals: Statisticals
     new:
       component:
         add_question: Add a question
