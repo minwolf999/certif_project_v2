@@ -1,5 +1,5 @@
 - @quizzes.each do |quiz|
-  = link_to quiz_path(quiz) do
+  = link_to quiz_path(quiz), data: { turbo: false } do
     div class="m-auto w-2/3 bg-f7f7f7 shadow-primary rounded-xl p-2"
       .flex.justify-between
         .font-bold = quiz.title

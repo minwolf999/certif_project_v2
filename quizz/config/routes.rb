@@ -12,8 +12,17 @@ Rails.application.routes.draw do
   get 'manifest' => 'rails/pwa#manifest', as: :pwa_manifest
 
   # Defines the root path route ('/')
-  resources :quizzes
-  resources :questions, only: [:new, :show]
+  resources :quizzes do
+    member do
+      get :result
+    end
+  end
+
+  resources :questions do
+    member do
+      get :answer
+    end
+  end
 
   root 'quizzes#index'
 end

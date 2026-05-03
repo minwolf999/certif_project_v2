@@ -15,6 +15,9 @@ fr:
       component:
         start: Commencer le quiz
         statisticals: Statistiques
+        score_by_user_label: Score par utilisateur
+        x_legend: Score
+        y_legend: Utilisateur
     new:
       component:
         add_question: Ajouter une question

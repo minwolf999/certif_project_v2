@@ -7,6 +7,10 @@ class Ability
     return unless user
 
     can :read, Quiz
+    can :read, Question
+
     can :manage, Quiz, user_id: user.id
+    can :manage, Question, quiz: { user_id: user.id }
+    can :manage, Score, user_id: user.id
   end
 end

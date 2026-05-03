@@ -10,11 +10,18 @@ en:
       component:
         title: Answers
         good: Is a good Answer ?
+  questions:
+    show:
+      component:
+        
   quizzes:
     show:
       component:
         start: Start the quiz
         statisticals: Statisticals
+        score_by_user_label: Score by user
+        x_legend: Score
+        y_legend: User
     new:
       component:
         add_question: Add a question
