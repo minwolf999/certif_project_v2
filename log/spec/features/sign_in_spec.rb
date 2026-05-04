@@ -10,7 +10,7 @@ RSpec.feature 'SignIns', type: :feature do
     user.save!
   end
 
-  scenario 'signs in with otp confirmation' do
+  scenario 'signs in with otp confirmation', js: true do
     visit new_user_session_path
 
     fill_in 'user_email', with: user.email
@@ -28,12 +28,12 @@ RSpec.feature 'SignIns', type: :feature do
     expect(page).to have_current_path(root_path)
   end
 
-  scenario 'signs in without password' do
+  scenario 'signs in without password', js: true do
     visit new_user_session_path
-      
+
     fill_in 'user_email', with: user.email
     click_button 'Sign in'
-  
+
     expect(page).to have_current_path(new_user_session_path, ignore_query: true)
   end
 end

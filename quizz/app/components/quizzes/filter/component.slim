@@ -1,0 +1,18 @@
+div class='px-4 pt-4'
+  = form_with(url: quizzes_path, method: :get, data: { turbo_frame: :quizzes, controller: :research, research_target: 'form' }) do |f|
+    = f.hidden_field :page, value: params[:page]
+
+    div class='flex justify-between'
+      div class="flex w-full gap-5 align-center items-center"
+        h2 class='text-2xl font-bold' = t('.title')
+
+        = f.text_field :by_title,
+          data: { action: "input->research#submit" },
+          placeholder: t('.search_placeholder'),
+          value: params[:by_title],
+          focus: true,
+          class: 'pl-2 rounded-xl border-2 outline-none transition-all duration-280 focus:border-primary_dark focus:shadow-primary'
+
+      = link_to new_quiz_path do
+        = render Common::Button::Component.new(focus: true, class: '!w-fit whitespace-nowrap') do 
+          = t('.new')

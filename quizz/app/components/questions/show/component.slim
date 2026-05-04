@@ -1,0 +1,17 @@
+div class="h-screen flex items-center justify-center"
+  div class="bg-fdfdfd w-[90%] max-h-[90vh] h-[90vh] rounded-xl shadow-primary p-4 flex flex-col gap-4 overflow-scroll"
+    div class="flex w-full justify-between items-center"
+      = render Common::Button::Component.new(focus: true, class: '!w-fit') do
+        = @score.point
+      h1 = @quiz.title
+      = "#{@current_question_index + 1} / #{@quiz.questions.size}"
+
+    div class="mx-auto my-[1vh] w-[85%] border-b-2"
+    
+    h1.text-center = @question.title
+
+    div.grid.grid-cols-2.gap-4.mb-3
+      - @question.answers.each do |answer|
+        .bg-f7f7f7.rounded-xl.shadow-primary.p-5
+          = link_to answer_question_path(@question, answer: answer.id) do
+            = answer.title

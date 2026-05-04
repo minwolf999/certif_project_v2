@@ -1,0 +1,35 @@
+en:
+  navbar:
+    component:
+      quiz: Quiz
+      forum: Forum
+      profile: Profile
+      logout: Log Out
+  answers:
+    new:
+      component:
+        title: Answers
+        good: Is a good Answer ?
+  quizzes:
+    result:
+      component:
+        final_result: 'Your result is:'
+    show:
+      component:
+        start: Start the quiz
+        statisticals: Statisticals
+        score_by_user_label: Score by user
+        x_legend: Score
+        y_legend: User
+    new:
+      component:
+        add_question: Add a question
+        submit: Submit
+    history:
+      component:
+        title: Quiz history
+    filter:
+      component:
+        title: Filter
+        search_placeholder: Search ...
+        new: New quiz
