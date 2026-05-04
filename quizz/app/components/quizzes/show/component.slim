@@ -10,15 +10,7 @@ div class="h-screen flex items-center justify-center"
     div class="flex flex-col gap-4 h-full w-[95%] m-auto"
       div class="flex w-full justify-between"
         = @quiz.created_at.to_formatted_s(:long)
-        .flex.gap-4.items-center.text-center
-          .flex.gap-2
-            = @quiz.likes.size
-            = inline_svg_tag 'svg/finger.svg', class: 'size-5 text-blue-500'
-
-          .flex.gap-2
-            = @quiz.dislikes.size
-            .rotate-180
-              = inline_svg_tag 'svg/finger.svg', class: 'size-5 text-red-500'
+        = render Common::LikeDislike::Component.new(quiz: @quiz)
 
       div class="bg-f7f7f7 mx-auto p-2 w-[90%] rounded-xl shadow-primary max-h-[20vh] overflow-scroll"
         = @quiz.description
